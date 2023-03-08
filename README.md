@@ -158,7 +158,7 @@ To run this example, follow the steps below.
 
 >Pointers accessible trough other pointers need to have information in a table stored in memory. The __Number of entries__ field allows you to fine tune the number of slots available in the table. 
 >
->:warning: Leaving __Number of entries__ blank will remove the limit, resulting in a large global bounds table (that grows in terms of 4 KB per entry!). The number of entries you need is often fairly low, so that some experimentation towards shrinking the global table might be interesting for lowering the resource consumption for the instrumentation. While you are in control of this, do not worry if you use a number that is too low: if this happens you should get a warning message telling you about the global bounds table running out of slots.
+>:warning: Leaving __Number of entries__ blank will remove the limit, resulting in a large global bounds table (4k slots!). The number of entries you need is often fairly low, so that some experimentation towards shrinking the global table might be interesting for lowering the resource consumption for the instrumentation. While you are in control of this, do not worry if you use a number that is too low: if this happens you should get a warning message telling you about the global bounds table running out of slots.
 
 9. Set the __Number of entries__ to `1   ` and close the __Project Options__ window.
 
