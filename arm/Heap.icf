@@ -1,0 +1,24 @@
+define memory mem with size = 4G;
+
+define region ROM_region = mem:[from     0x8000 to  0x80000000 - 1];
+define region RAM_region = mem:[from 0x80000000 to 0x100000000 - 2];
+
+initialize by copy { rw };
+initialize by copy with packing = none { section __DLIB_PERTHREAD };
+do not initialize  { section .noinit };
+
+define block HEAP      with alignment = 8, size = 500 { };
+define block CSTACK    with alignment = 8, size = 100000 { };
+define block IRQ_STACK with alignment = 8, size = 16K { };
+define block FIQ_STACK with alignment = 8, size = 16K { };
+
+//define block .iar.as_table with alignment = 4, size = 1M { };
+//define block .iar.as_entries with alignment = 4, size = 256K { };
+
+place at address mem:0x1000 { ro section .intvec };
+
+place in ROM_region      { ro };
+place in RAM_region      { rw, block HEAP, block CSTACK, block IRQ_STACK,
+                               block FIQ_STACK,
+                               /*block .iar.as_table, block .iar.as_entries*/ };
+

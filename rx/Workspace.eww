@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\Arithmetic.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\Bounds-checking.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\Bounds-checking+libs.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\Heap.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\MaxLib.ewp</path>
+    </project>
+    <batchBuild>
+        <batchDefinition>
+            <name>ALL</name>
+            <member>
+                <project>Arithmetic</project>
+                <configuration>Debug</configuration>
+            </member>
+            <member>
+                <project>Bounds-checking</project>
+                <configuration>Debug</configuration>
+            </member>
+            <member>
+                <project>MaxLib</project>
+                <configuration>Debug</configuration>
+            </member>
+            <member>
+                <project>Bounds-checking+libs</project>
+                <configuration>CheckPointersFromNonInstrumentedCode</configuration>
+            </member>
+            <member>
+                <project>Bounds-checking+libs</project>
+                <configuration>DoNotCheckPointersFromNonInstrumentedCode</configuration>
+            </member>
+            <member>
+                <project>Heap</project>
+                <configuration>Debug</configuration>
+            </member>
+        </batchDefinition>
+    </batchBuild>
+</workspace>

@@ -1,0 +1,7 @@
+**/Debug
+**/settings
+**/CheckPointersFromNonInstrumentedCode
+**/DoNotCheckPointersFromNonInstrumentedCode
+
+**/*.dep
+**/*.log

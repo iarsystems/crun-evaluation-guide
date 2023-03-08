@@ -1,0 +1,11 @@
+# Auto-detect text files and perform LF normalization
+* text=auto
+
+# These files should have specific line endings
+*.ewp   text eol=crlf
+*.ewt   text eol=crlf
+*.eww   text eol=crlf
+*.ewd   text eol=crlf
+
+# These files are binary and should be left untouched
+*.a     binary
