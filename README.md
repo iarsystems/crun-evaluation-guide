@@ -3,7 +3,7 @@
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ## What is C-RUN?
-[C-RUN](https://iar.com/crun) is an add-on to the IAR C-SPY Debugger, completely integrated into the IAR Embedded Workbench. It helps you to ensure code quality in both your C and C++ code by inserting efficient instrumentation to the application for automatic runtime error checking capabilities.
+[C-RUN](https://iar.com/crun) is a Runtime Analysis Tool completely integrated into the IAR Embedded Workbench as an add-on. It helps you to ensure code quality in both your C and C++ code by inserting efficient instrumentation to the application for automatic runtime error checking capabilities.
 
 <!-- ![image](https://user-images.githubusercontent.com/54443595/222785546-f0f2a98f-24b5-4d05-a341-6ecd8cc6e84a.png) -->
 
