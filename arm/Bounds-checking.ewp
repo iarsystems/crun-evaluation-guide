@@ -1022,4 +1022,10 @@
     <file>
         <name>$PROJ_DIR$\..\common\IntMax.c</name>
     </file>
+    <file>
+        <name>$EW_DIR$\arm\src\lib\crun\ReportCheckFailedStdout.c</name>
+        <excluded>
+            <configuration>Debug</configuration>
+        </excluded>
+    </file>
 </project>

@@ -2037,4 +2037,11 @@
     <file>
         <name>$PROJ_DIR$\MaxLib.a</name>
     </file>
+    <file>
+        <name>$EW_DIR$\arm\src\lib\crun\ReportCheckFailedStdout.c</name>
+        <excluded>
+            <configuration>DoNotCheckPointersFromNonInstrumentedCode</configuration>
+            <configuration>CheckPointersFromNonInstrumentedCode</configuration>
+        </excluded>
+    </file>
 </project>
