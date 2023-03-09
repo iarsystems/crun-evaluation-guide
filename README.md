@@ -97,7 +97,7 @@ To run this example, follow the steps as described below.
 
 10. Terminate the debugging session (<kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>D</kbd>).
 
-11. In the project's __Runtime checking__ options, disable the following
+11. When creating applications, there are situations where relying on the wrapping around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can be simply deselected. In the project's __Runtime checking__ options, disable the following
 >__Insert checks for__
 >- [x] Integer overflow
 >   - [ ] Including unsigned 
@@ -108,7 +108,7 @@ To run this example, follow the steps as described below.
 >- [x] Division by zero
 
 12. Rebuild, Download and Debug the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
-> :bulb: When creating applications, there are situations where relying on the wrapping around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can be simply deselected :white_medium_square:. Disabling the checks you do not need will generally yield improved execution time and code size.
+> Disabling the checks you do not need will generally yield improved execution time and code size. 
 
 13. By default, C-RUN will __Stop__ at each detected error. In the __C-RUN Messages__, the _Default action_ can be changed to __Log__ or __Ignore__.
 
