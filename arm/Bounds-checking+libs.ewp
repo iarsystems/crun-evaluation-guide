@@ -2,7 +2,7 @@
 <project>
     <fileVersion>3</fileVersion>
     <configuration>
-        <name>CheckPointersFromNonInstrumentedCode</name>
+        <name>DoNotCheckPointersFromNonInstrumentedCode</name>
         <toolchain>
             <name>ARM</name>
         </toolchain>
@@ -16,15 +16,15 @@
                 <debug>1</debug>
                 <option>
                     <name>ExePath</name>
-                    <state>CheckPointersFromNonInstrumentedCode\Exe</state>
+                    <state>DoNotCheckPointersFromNonInstrumentedCode\Exe</state>
                 </option>
                 <option>
                     <name>ObjPath</name>
-                    <state>CheckPointersFromNonInstrumentedCode\Obj</state>
+                    <state>DoNotCheckPointersFromNonInstrumentedCode\Obj</state>
                 </option>
                 <option>
                     <name>ListPath</name>
-                    <state>CheckPointersFromNonInstrumentedCode\List</state>
+                    <state>DoNotCheckPointersFromNonInstrumentedCode\List</state>
                 </option>
                 <option>
                     <name>GEndianMode</name>
@@ -36,7 +36,7 @@
                 </option>
                 <option>
                     <name>Output description</name>
-                    <state>Automatic choice of formatter, without multibyte support.</state>
+                    <state>No specifier a, A, no specifier n, no float nor long long, without multibyte support.</state>
                 </option>
                 <option>
                     <name>GOutputBinary</name>
@@ -117,7 +117,7 @@
                 <option>
                     <name>GBECoreSlave</name>
                     <version>25</version>
-                    <state>38</state>
+                    <state>34</state>
                 </option>
                 <option>
                     <name>OGUseCmsis</name>
@@ -134,7 +134,7 @@
                 <option>
                     <name>CoreVariant</name>
                     <version>25</version>
-                    <state>38</state>
+                    <state>34</state>
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
@@ -157,7 +157,7 @@
                 <option>
                     <name>GFPUCoreSlave2</name>
                     <version>25</version>
-                    <state>38</state>
+                    <state>34</state>
                 </option>
                 <option>
                     <name>OGCMSISPackSelectDevice</name>
@@ -173,7 +173,7 @@
                 <option>
                     <name>OGPrintfVariant</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>OGPrintfMultibyteSupport</name>
@@ -268,7 +268,7 @@
                 <option>
                     <name>CCAllowList</name>
                     <version>1</version>
-                    <state>00000000</state>
+                    <state>10010100</state>
                 </option>
                 <option>
                     <name>CCDebugInfo</name>
@@ -348,7 +348,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>0</state>
+                    <state>2</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -357,7 +357,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>0</state>
+                    <state>2</state>
                 </option>
                 <option>
                     <name>CompilerMisraRules98</name>
@@ -1017,7 +1017,7 @@
         </settings>
     </configuration>
     <configuration>
-        <name>DoNotCheckPointersFromNonInstrumentedCode</name>
+        <name>CheckPointersFromNonInstrumentedCode</name>
         <toolchain>
             <name>ARM</name>
         </toolchain>
@@ -1031,15 +1031,15 @@
                 <debug>1</debug>
                 <option>
                     <name>ExePath</name>
-                    <state>DoNotCheckPointersFromNonInstrumentedCode\Exe</state>
+                    <state>CheckPointersFromNonInstrumentedCode\Exe</state>
                 </option>
                 <option>
                     <name>ObjPath</name>
-                    <state>DoNotCheckPointersFromNonInstrumentedCode\Obj</state>
+                    <state>CheckPointersFromNonInstrumentedCode\Obj</state>
                 </option>
                 <option>
                     <name>ListPath</name>
-                    <state>DoNotCheckPointersFromNonInstrumentedCode\List</state>
+                    <state>CheckPointersFromNonInstrumentedCode\List</state>
                 </option>
                 <option>
                     <name>GEndianMode</name>
@@ -1047,11 +1047,11 @@
                 </option>
                 <option>
                     <name>Input description</name>
-                    <state>Automatic choice of formatter.</state>
+                    <state>Automatic choice of formatter, without multibyte support.</state>
                 </option>
                 <option>
                     <name>Output description</name>
-                    <state>No specifier a, A, no specifier n, no float nor long long.</state>
+                    <state>Automatic choice of formatter, without multibyte support.</state>
                 </option>
                 <option>
                     <name>GOutputBinary</name>
@@ -1132,7 +1132,7 @@
                 <option>
                     <name>GBECoreSlave</name>
                     <version>25</version>
-                    <state>38</state>
+                    <state>34</state>
                 </option>
                 <option>
                     <name>OGUseCmsis</name>
@@ -1149,7 +1149,7 @@
                 <option>
                     <name>CoreVariant</name>
                     <version>25</version>
-                    <state>38</state>
+                    <state>34</state>
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
@@ -1172,7 +1172,7 @@
                 <option>
                     <name>GFPUCoreSlave2</name>
                     <version>25</version>
-                    <state>38</state>
+                    <state>34</state>
                 </option>
                 <option>
                     <name>OGCMSISPackSelectDevice</name>
@@ -1188,7 +1188,7 @@
                 <option>
                     <name>OGPrintfVariant</name>
                     <version>0</version>
-                    <state>3</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>OGPrintfMultibyteSupport</name>
@@ -1283,7 +1283,7 @@
                 <option>
                     <name>CCAllowList</name>
                     <version>1</version>
-                    <state>10010100</state>
+                    <state>00000000</state>
                 </option>
                 <option>
                     <name>CCDebugInfo</name>
@@ -1363,7 +1363,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>2</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -1372,7 +1372,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>2</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CompilerMisraRules98</name>

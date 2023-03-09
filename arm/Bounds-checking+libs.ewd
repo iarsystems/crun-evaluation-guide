@@ -2,7 +2,7 @@
 <project>
     <fileVersion>3</fileVersion>
     <configuration>
-        <name>CheckPointersFromNonInstrumentedCode</name>
+        <name>DoNotCheckPointersFromNonInstrumentedCode</name>
         <toolchain>
             <name>ARM</name>
         </toolchain>
@@ -88,7 +88,7 @@
                 </option>
                 <option>
                     <name>OCLastSavedByProductVersion</name>
-                    <state>7.20.2.7418</state>
+                    <state>8.11.1.13270</state>
                 </option>
                 <option>
                     <name>UseFlashLoader</name>
@@ -1405,7 +1405,7 @@
         </debuggerPlugins>
     </configuration>
     <configuration>
-        <name>DoNotCheckPointersFromNonInstrumentedCode</name>
+        <name>CheckPointersFromNonInstrumentedCode</name>
         <toolchain>
             <name>ARM</name>
         </toolchain>
@@ -1491,7 +1491,7 @@
                 </option>
                 <option>
                     <name>OCLastSavedByProductVersion</name>
-                    <state>7.20.2.7418</state>
+                    <state>8.11.1.13270</state>
                 </option>
                 <option>
                     <name>UseFlashLoader</name>
