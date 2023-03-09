@@ -28,7 +28,7 @@ This guide works for any of the products mentioned below, given that the followi
 >
 >:warning: The size-limited mode is __not__ intended for use in production environment. Please get in [contact](https://iar.com/contact) with your IAR representative for access to non-limited licensing.
 >
->:warning: C-RUN does not work with size-limited trial version (KickStart license) nor with the _Baseline_ editions of the IAR Embedded Workbench.
+>:warning: C-RUN does not work with size-limited trial version (KickStart license) of the IAR Embedded Workbench.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
