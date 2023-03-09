@@ -970,4 +970,10 @@
     <file>
         <name>$PROJ_DIR$\..\common\Arithmetic.c</name>
     </file>
+    <file>
+        <name>$EW_DIR$\rx\src\lib\rx\ReportCheckFailedStdout.c</name>
+        <excluded>
+            <configuration>Debug</configuration>
+        </excluded>
+    </file>
 </project>

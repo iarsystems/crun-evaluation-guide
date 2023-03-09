@@ -1127,9 +1127,12 @@
         </settings>
     </configuration>
     <file>
-        <name>$PROJ_DIR$\..\common\Boundschecking\Boundschecking.c</name>
+        <name>$PROJ_DIR$\..\common\Bounds.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\..\common\Boundschecking\IntMax.c</name>
+        <name>$PROJ_DIR$\..\common\IntMax.c</name>
+    </file>
+    <file>
+        <name>$EW_DIR$\rx\src\lib\rx\ReportCheckFailedStdout.c</name>
     </file>
 </project>

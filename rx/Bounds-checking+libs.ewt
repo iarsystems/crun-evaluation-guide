@@ -2252,74 +2252,12 @@
         </settings>
     </configuration>
     <file>
-        <name>$PROJ_DIR$\..\common\Boundschecking2\Boundschecking_2.c</name>
+        <name>$PROJ_DIR$\..\common\Bounds+Lib.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\maxlib\maxlib.a</name>
+        <name>$PROJ_DIR$\MaxLib.a</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\..\common\Boundschecking2\readme.txt</name>
-    </file>
-    <file>
-        <name>$PROJ_DIR$\..\common\Boundschecking2\ReportCheckFailedStdout.c</name>
-        <configuration>
-            <name>CheckPointersFromNonInstrumentedCode</name>
-            <settings>
-                <name>RuntimeChecking</name>
-                <data>
-                    <version>2</version>
-                    <wantNonLocal>0</wantNonLocal>
-                    <debug>1</debug>
-                    <option>
-                        <name>GenRtcTrackPointerBounds</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcCheckAccesses</name>
-                        <state>1</state>
-                    </option>
-                    <option>
-                        <name>GenRtcGenerateEntries</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcIntOverflow</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcIncUnsigned</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcIntConversion</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcInclExplicit</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcIntShiftOverflow</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcInclUnsignedShiftOverflow</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcUnhandledCase</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcDivByZero</name>
-                        <state>0</state>
-                    </option>
-                    <option>
-                        <name>GenRtcCheckPtrsNonInstrFunc</name>
-                        <state>1</state>
-                    </option>
-                </data>
-            </settings>
-        </configuration>
+        <name>$EW_DIR$\rx\src\lib\rx\ReportCheckFailedStdout.c</name>
     </file>
 </project>
