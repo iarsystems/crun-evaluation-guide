@@ -287,6 +287,7 @@ All you need to do is to redirect the built-in function `__iar_ReportCheckFailed
 
 2. Go to __Category__ → __Linker__ → __Extra Options__ and
 >- [x] Use command line options
+>
 >Command line options: (one per line)
 >
 >```
