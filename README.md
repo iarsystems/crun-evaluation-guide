@@ -12,7 +12,7 @@
 ## What is in this guide?
 This guide contains a walk-through for those evaluating the runtime error checking capabilities offered by C-RUN.
 
-You can evaluate it right now for free.
+You can evaluate C-RUN right now free-of-charge with a 14-day time-limited trial version of the IAR Embedded Workbench for Arm or the IAR Embedded Workbench for Renesas RX. Register and download using the corresponding links provided in the _Software Requirements_ table, under _Required License Types_, for the target architecture of your choosing.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
@@ -20,15 +20,15 @@ You can evaluate it right now for free.
 This guide works for any of the products mentioned below, given that the following requirements are met:
 | __Product__ | __Target Architecture__ | __Required Version__ | __Required License Types__ |
 | - | - | - | - |
-| IAR Embedded Workbench | [Arm](https://iar.com/ewarm) | 8.11 or later | - Cortex-M or,<br>- Standard or,<br>- Time-limited |
-| IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 3.10 or later | - Standard or,<br>- Time-limited |
+| IAR Embedded Workbench | [Arm](https://iar.com/ewarm) | 8.11 or later | - Cortex-M or,<br>- Standard or,<br>- Extended or,<br>- [Time-limited trial version](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/iar-embedded-workbench-for-arm---free-trial-version/) |
+| IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 3.10 or later | - Standard or,<br>- [Time-limited trial version](https://www.iar.com/products/architectures/renesas/iar-embedded-workbench-for-renesas-rx/iar-embedded-workbench-for-renesas-rx---free-trial-version/) |
 
 >### C-RUN licensing considerations
->:bulb: No special action needs to be taken when evaluating C-RUN in code size limited mode. This mode was created for allowing customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
+>:bulb: No special action needs to be taken when evaluating C-RUN in code size limited mode using the time-limited trial version. This mode was created for allowing customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
 >
 >:warning: The size-limited mode is __not__ intended for use in production environment. Please get in [contact](https://iar.com/contact) with your IAR representative for access to non-limited licensing.
 >
->:warning: C-RUN does not work with size-limited evaluation licenses (e.g., _KickStart_ or _Baseline_).
+>:warning: C-RUN does not work with size-limited trial version (KickStart license) nor with the _Baseline_ editions of the IAR Embedded Workbench.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
