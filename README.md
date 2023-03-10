@@ -403,7 +403,6 @@ Now that we understand the mechanics of redirecting the C-RUN raw messages to `s
   {
     serial_send(USART6, (unsigned char)buf[i]);
   }
-}    
 ```
 
 >:bulb: `serial_send()` could be replaced by another function that sends the characters from teh C-RUN messages strings to other mediums such as SPI, I2C, RAM, Flash, etc.
