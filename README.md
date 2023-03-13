@@ -238,6 +238,7 @@ The various checker functions examine the bookkeeping information and the buffer
 >:warning: Using _heap checking_ makes it much easier to find heap usage errors, but it is **not** fail-safe.
 >
 >:warning: _Heap checking_ and _bounds checking_ can complement each other in identifying dynamic memory usage errors. However, because of the potential impact in terms of performance and overhead, you are advised **not** to enable both at the same time.
+
 To run this example, do this:
 
 1. Select the _Heap_ project.
