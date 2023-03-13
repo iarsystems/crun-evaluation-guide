@@ -1,72 +1,70 @@
-# Evaluation Guide for the IAR C-RUN
+# Evaluation Guide for IAR C-RUN
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ## What is C-RUN?
-[C-RUN](https://iar.com/crun) is a Runtime Analysis Tool completely integrated into the IAR Embedded Workbench as an add-on. It helps you to ensure code quality in both your C and C++ code by inserting efficient instrumentation to the application for automatic runtime error checking capabilities.
+[C-RUN](https://iar.com/crun) is an add-on runtime analysis tool completely integrated into IAR Embedded Workbench. It helps you to ensure code quality in your C and C++ code by inserting efficient instrumentation code into the application for automatic runtime error checking capabilities.
 
 <!-- ![image](https://user-images.githubusercontent.com/54443595/222785546-f0f2a98f-24b5-4d05-a341-6ecd8cc6e84a.png) -->
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
-## What is in this guide?
-This guide contains a walk-through for those evaluating the runtime error checking capabilities offered by C-RUN.
+## What is this guide?
+This guide contains a walkthrough for evaluating the runtime error checking capabilities offered by C-RUN.
 
-You can evaluate C-RUN right now free-of-charge with a 14-day time-limited trial version of the IAR Embedded Workbench for Arm or the IAR Embedded Workbench for Renesas RX. Register and download using the corresponding links provided in the _Software Requirements_ table, under _Required License Types_, for the target architecture of your choosing.
+You can evaluate C-RUN right now free of charge with a 14-day time-limited trial version of IAR Embedded Workbench for Arm or IAR Embedded Workbench for Renesas RX. Register and download using the corresponding links provided in the _Software Requirements_ table, under _Required License Types_, for the target architecture of your choosing.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
-## Software Requirements
-This guide works for any of the products mentioned below, given that the following requirements are met:
-| __Product__ | __Target Architecture__ | __Required Version__ | __Required License Types__ |
+## Software requirements
+This guide works for any of these products, given that the requirements are met:
+| __Product__ | __Target architecture__ | __Required version__ | __Required license types__ |
 | - | - | - | - |
-| IAR Embedded Workbench | [Arm](https://iar.com/ewarm) | 8.11 or later | - Cortex-M or,<br>- Standard or,<br>- Extended or,<br>- [Time-limited trial version](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/iar-embedded-workbench-for-arm---free-trial-version/) |
-| IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 3.10 or later | - Standard or,<br>- [Time-limited trial version](https://www.iar.com/products/architectures/renesas/iar-embedded-workbench-for-renesas-rx/iar-embedded-workbench-for-renesas-rx---free-trial-version/) |
+| IAR Embedded Workbench | [Arm](https://iar.com/ewarm) | 8.11 or later | - Cortex-M, or<br>- Standard, or<br>- Extended, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/iar-embedded-workbench-for-arm---free-trial-version/) |
+| IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 3.10 or later | - Standard, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/renesas/iar-embedded-workbench-for-renesas-rx/iar-embedded-workbench-for-renesas-rx---free-trial-version/) |
 
 >### C-RUN licensing considerations
->:bulb: No special action needs to be taken when evaluating C-RUN in code size limited mode using the time-limited trial version. This mode was created for allowing customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
+>:bulb: No special action needs to be taken when you evaluate C-RUN in code-size-limited mode using the time-limited trial version. This mode was created to allow customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
 >
->:warning: The size-limited mode is __not__ intended for use in production environment. Please get in [contact](https://iar.com/contact) with your IAR representative for access to non-limited licensing.
+>:warning: The size-limited mode is __not__ intended for use in a production environment. [Contact](https://iar.com/contact) your IAR representative for access to non-limited licensing.
 >
->:warning: C-RUN does not work with size-limited trial version (KickStart license) of the IAR Embedded Workbench.
-
+>:warning: C-RUN does not work with the size-limited trial version (KickStart license) of IAR Embedded Workbench.
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ## Exploring C-RUN
-A number of example projects created as demonstrations of the feature set offered by C-RUN can be found in this repository.
+A number of example projects, created as demonstrations of the feature set offered by C-RUN, can be found in this repository.
 
-To run the examples,
+To run the examples:
 
-1. Clone this repository, or download its [latest release](https://github.com/IARSystems/crun-evaluation-guide/releases/latest).
-2. Launch the IAR Embedded Workbench for a supported target architecture.
-3. Open the _Workspace.eww_ found in the folder for the desired target architecture.
+1. Clone this repository, or download the [latest release](https://github.com/IARSystems/crun-evaluation-guide/releases/latest).
+2. Launch the IAR Embedded Workbench IDE for a supported target architecture.
+3. Open the `Workspace.eww` file, found in the folder for the desired target architecture.
 
-The Workspace will start in with a pre-selected project. In the Workspace `Overview` you will notice buttons for switching from one project to another. 
+The workspace will launch with a pre-selected project. In the workspace __Overview__ there are tabs for switching from one project to another:
 
-> `Overview` `Arithmetic` `Bounds-checking` `< >`<br>
+> __`Overview`__ `Arithmetic` `Bounds-checking` `< >`
+>
+>:bulb: The arrow buttons scroll to tabs that did not fit into the window width. The window can be resized. Alternatively, right-click a project in the __Overview__ and choose __Set as active__ from the context menu.
 
->:bulb: The arrow buttons scrolls towards other buttons that did not fit into the panel width. The panel can be resized. Alternatively, the context menu for each project in the `Overview` gives you the __Set as active__ option.
-
-Below you will find specific instructions for when running each of these projects.
+Below you will find specific instructions for running each of these projects.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
-### `Arithmetic Checking` capabilities
+### Arithmetic Checking
 The first example explores the most straightforward functionality in C-RUN: the _Arithmetic_ checks.
 
-To run this example, follow the steps as described below.
+To run this example, do this:
 
-1. Select the _Arithmetic_ project.
+1. Select the _Arithmetic_ project in the workspace window.
 
-2. Go to __Project__  →  __Options__ → __Runtime Checking__ (<kbd>Alt</kbd> + <kbd>F7</kbd>).
+2. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__.
 
 3. Make sure that __C-RUN Runtime Checking__ is enabled
 >__C-RUN Runtime Checking__
 >- [x] Enable
 >   - [ ] Use checked heap
 >   - [ ] Enable bounds checking
-
-4. Check that all the checks below are inserted
+4. Make sure all these checks are selected:
 >__Insert checks for__
 >- [x] Integer overflow
 >   - [x] Including unsigned 
@@ -77,27 +75,27 @@ To run this example, follow the steps as described below.
 >- [x] Division by zero
 >- [x] Unhandled switch case
 
-5. Press the **`  OK  `** button to close the Project Options window.
+5. Click `  OK  ` to close the __Project Options__ dialog box.
 
-6. **Download and Debug** the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
+6. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
-7. The C-SPY Debugger will hit a breakpoint at `main()`. Hit <kbd>F5</kbd> to resume the program execution.
+7. The C-SPY Debugger will hit a breakpoint at `main()`. Press <kbd>F5</kbd> to resume the program execution.
 
 8. The execution will _Stop_, with the following line of code highlighted:
 
 ![image](https://user-images.githubusercontent.com/54443595/223120924-98fea4f5-ab7a-487e-8309-bf650db05ee8.png)
 
->In the Code Editor, C-SPY highlights in green the statement in which the execution stopped when the runtime error checking was triggered. On top of that, C-RUN narrows down to the runtime error's root cause, highlighted in purple.
+>In the editor window, C-SPY highlights in green the statement in which the execution stopped when the runtime error checking was triggered. In addition, C-RUN narrows the problem down and highlights the root cause of the runtime error in purple.
 
 ![image](https://user-images.githubusercontent.com/54443595/223120962-c875ed49-8322-4a44-b296-5decd196b6df.png)
 
-> Concurrently, __C-RUN Messages__ (__View__ → __C-RUN__ → __Messages__) will break down the detected runtime error as well as its call stack. Clicking on the call stack navigates to the corresponding source code line.
+> Concurrently, the __C-RUN Messages__ window (__View__ → __C-RUN__ → __Messages__) will break down the detected runtime error as well as its call stack. Clicking on the call stack takes you to the corresponding source code line.
 
-9. Examine the remaining detected errors by hitting <kbd>F5</kbd> to resume the program execution until the next error message or until the program ends.
+9. Examine the remaining detected errors by pressing <kbd>F5</kbd> to resume the program execution until the next error message, or until the execution ends.
 
-10. Terminate the debugging session (<kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>D</kbd>).
+10. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
 
-11. When creating applications, there are situations where relying on the wrapping around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can be simply deselected. In the project's __Runtime checking__ options, disable the following
+11. When you create applications, there are situations where relying on the wrap-around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can simply be deselected. In the project's __Runtime checking__ options, disable these:
 >__Insert checks for__
 >- [x] Integer overflow
 >   - [ ] Including unsigned 
@@ -107,30 +105,29 @@ To run this example, follow the steps as described below.
 >   - [ ] Including unsigned shifts 
 >- [x] Division by zero
 
-12. Rebuild, Download and Debug the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
-> Disabling the checks you do not need will generally yield improved execution time and code size. 
+12. Rebuild, then __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
+> Disabling the checks you do not need will generally make execution faster and decrease the code size. 
 
-13. By default, C-RUN will __Stop__ at each detected error. In the __C-RUN Messages__, the _Default action_ can be changed to __Log__ or __Ignore__.
+13. By default, C-RUN will __Stop__ at each detected error. In the __C-RUN Messages__ window, the _Default action_ can be changed to __Log__ or __Ignore__.
 
 >:bulb: __C-RUN Messages__ can be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
 
-
 <!-- --------------------------------------------------------------------------------------------------- -->
-### `Bounds Checking` capabilities
+### Bounds checking
 The second example explores the _Bounds Checking_ capabilities provided by C-RUN.
 
-To run this example, follow the steps below.
+To run this example, do this:
 
 1.  Select the _Bounds-checking_ project.
 
-2. **Download and Debug** the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
+2. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
-3. After the program reaches the breakpoint in the `main()` function, resume the execution (<kbd>F5</kbd>).
-> Note how the program finishes its execution (`exit()`) without any apparent errors of any kind.
+3. After the execution reaches the breakpoint in the `main()` function, resume the execution (<kbd>F5</kbd>).
+> Note how the application finishes executing (`exit()`) without any apparent errors of any kind.
 
-4. Terminate the debugging session (<kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>D</kbd>).
+4. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
 
-5. Go to __Project__ → __Options__ → __Runtime Checking__ (<kbd>Alt</kbd> + <kbd>F7</kbd>) and _enable bounds checking_ as below
+5. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and _enable bounds checking_:
 >__C-RUN Runtime Checking__
 >- [x] Enable
 >   - [ ] Use checked heap
@@ -145,57 +142,53 @@ To run this example, follow the steps below.
 6. Rebuild and run the project.
 
 ![image](https://user-images.githubusercontent.com/54443595/223133775-e597ae6e-fe4f-4d17-9f82-c6023bcdb6d1.png)
+> Note that now C-RUN highlighted an out-of-bounds access for `*(ap+2)`. However, the execution stopped earlier, at the first `printf()` statement. The reason is that the compiler determines that pointer addresses used as parameters for those `printf()` calls are related and, with that, C-RUN efficiently can test them in one go.
 
-> Note that now C-RUN highlighted out-of-bounds access for `*(ap+2)`. However, the execution stopped earlier, at the first `printf()` statement. The reason is that the compiler determines pointer addresses used as parameter for those `printf()` calls are related and, with that, C-RUN efficiently can test them in one go.
+7. Press <kbd>F5</kbd> to resume the execution.
+>:bulb: It will stop at the last statement of the application, indicating that the assignment is performed out of bounds. From a bounds-checking perspective, dynamically allocated memory is no different from local pointers, static buffers, or buffers on the stack.
 
-7. Hit <kbd>F5</kbd> to resume the program execution.
->:bulb: It will stop at the last statement of the program, indicating that the assignment is done out-of-bounds. From a bound checking perspective, dynamically allocated memory is no different from local pointers, static buffers or buffers on the stack.
-
-8. Go back to __Project__  →  __Options__ → __Runtime Checking__ (<kbd>Alt</kbd> + <kbd>F7</kbd>) and take a look at the __Global bounds table__ frame.
+8. Again, choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and take a look at the __Global bounds table__ group box.
 > __Global bounds table__
 >   - [x] Check pointers from non-instrumented memory<br>
 >   Number of entries `2   `
-
->Pointers accessible trough other pointers need to have information in a table stored in memory. The __Number of entries__ field allows you to fine tune the number of slots available in the table. 
+>Pointers that can be accessed through other pointers must have information in a table stored in memory. The __Number of entries__ field allows you to fine-tune the number of slots available in the table.
 >
->:warning: Leaving __Number of entries__ blank will remove the limit, resulting in a large global bounds table (4k slots!). The number of entries you need is often fairly low, so that some experimentation towards shrinking the global table might be interesting for lowering the resource consumption for the instrumentation. While you are in control of this, do not worry if you use a number that is too low: if this happens you should get a warning message telling you about the global bounds table running out of slots.
+>:warning: Leaving __Number of entries__ blank will remove the limit, resulting in a large global bounds table (4k slots!). The number of entries you need is often fairly low, so you might want to experiment with shrinking the global table, to lower the resource consumption for the instrumentation. Do not worry if you use a number that is too low; if this happens, you will get a warning message telling you that the global bounds table is running out of slots.
 
-9. Set the __Number of entries__ to `1   ` and close the __Project Options__ window.
+9. Set the __Number of entries__ to `1   ` and close the __Project Options__ dialog box.
 
-10. Rebuild, Download and Debug the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
-> In this example there is only one pointer that needs to be kept in the table, hence a single entry does for the job.
-
+10. Rebuild, and __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
+> In this example, there is only one pointer that needs to be kept in the table, so a single entry is enough.
 
 <!-- --------------------------------------------------------------------------------------------------- -->
-### `Bounds Checking` and libraries
-Within scenarios where the main project relies on pre-built (/third-party) libraries, _bounds checking_ requires extra considerations for shared pointers.
+### Bounds checking and libraries
+In scenarios where the main project relies on pre-built (third-party) libraries, _bounds checking_ requires extra consideration for shared pointers.
 
-The project _Bounds-checking+libs_ is a modified version of the _Bounds-checking_ project. The functionality available from the `IntMax.c` file was moved to a _Library project_ that produced a static library named `MaxLib.a`, pre-built with no C-RUN bounds checking instrumentation, as it would be the common case for third-party libraries where the code cannot be changed. 
+The project _Bounds-checking+libs_ is a modified version of the _Bounds-checking_ project. The functionality available from the `IntMax.c` file was moved to a _Library project_ that produced a static library named `MaxLib.a`, pre-built with no C-RUN bounds-checking instrumentation, typical for third-party libraries where the code cannot be changed. 
 
-When using pointers and pointer arguments between the _instrumented application code_ and the _non-instrumented library code_ one must inform the compiler (and linker) that functions in the library code do not have bounds check information. The best way to do so is to use `#pragma default_no_bounds=on/off` for when including a library header so we can inform the compiler that the library was not built with C-RUN Bounds checking information:
+When you use pointers and pointer arguments between the _instrumented application code_ and the _non-instrumented library code_, you must inform the compiler (and linker) that functions in the library code do not have bounds-checking information. The best way to do so is to use the `#pragma default_no_bounds` directive when including a library header, to inform the compiler that the library was not built with C-RUN Bounds-checking information:
 ```c
 #ifdef __AS_BOUNDS__             // Module built with C-RUN Bounds checking?
-#define default_no_bounds=on     // Turn OFF bounds checking information generation
+#define default_no_bounds=on     // Turn OFF bounds-checking information generation
 #include "library-header.h"
-#define default_no_bounds=off    // Turn ON  bounds checking information generation
+#define default_no_bounds=off    // Turn ON  bounds-checking information generation
 #else
 #include "library-header.h"
 #endif
-
 /* Application code */
 ```
 
-To run this example, follow the steps below.
+To run this example, do this:
 
 1. Select the  _Bounds-checking+libs_ project.
->This project comes with 2 build configurations with different options for C-RUN:
+>This project comes with two build configurations, with different options for C-RUN:
 > - `DoNotCheckPointersFromNonInstrumentedCode` and 
 > - `CheckPointersFromNonInstrumentedCode`
 
-2. Let's start with the `DoNotcheckPointersFromNonInstrumentedCode` build configuration.
->From the top of the __Workspace__ panel, you can switch between existing build configurations.
+2. Begin with the `DoNotcheckPointersFromNonInstrumentedCode` build configuration.
+>At the top of the __Workspace__ window, you can switch between existing build configurations.
 
-3. Go to __Project__ → __Options__ → __Runtime Checking__ (<kbd>Alt</kbd> + <kbd>F7</kbd>) and make sure the options are set as below
+3. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and confirm these settings:
 >__C-RUN Runtime Checking__
 >- [x] Enable
 >   - [ ] Use checked heap
@@ -207,16 +200,15 @@ To run this example, follow the steps below.
 >   - [ ] Generate functions callable from non-instrumented code
 >   - [ ] Check pointers for non-instrumented functions
 
-4. Close the __Project Options__ window, __Download and Debug__ the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
->You should get no C-RUN errors reported nor other indications that something is wrong. In the `DoNotCheckPointersFromNonInstrumentedCode` build configuration, turning off bounds check information for library headers worked well as it will work in most cases; returned pointers will not be bounds-checked but will have associated bounds that are always "big enough" to accommodate them. In other words, this means that pointers originating from your code will be checked, but not pointers from the library. This might be perfectly acceptable and the process is non-intrusive in terms of code changes.
+4. Close the __Project Options__ dialog box, and choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
+>You should get no C-RUN errors, or any other indications that something is wrong. In the `DoNotCheckPointersFromNonInstrumentedCode` build configuration, turning off bounds-checking information for library headers worked well- (As it should do in most cases; returned pointers will not be bounds-checked but will have associated bounds that are always "large enough" to accommodate them.) In other words, this means that pointers originating from your code will be checked, but not pointers from the library. This should normally be perfectly acceptable and the process is non-intrusive in terms of code changes.
 
-5. Terminate C-SPY (<kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>D</kbd>).
+5. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
  
 6. Switch to the `CheckPointersFromNonInstrumentedCode` build configuration.
->The `CheckPointersFromNonInstrumentedCode` build configuration demonstrates a situation where is desirable to have _bounds checking_ for pointers and returned pointers defined in the library code. 
+>The `CheckPointersFromNonInstrumentedCode` build configuration demonstrates a situation where it is desirable to have _bounds checking_ for pointers and returned pointers defined in the library code.
 
-7. Go to __Project__ → __Options__ → __Runtime Checking__ (<kbd>Alt</kbd> + <kbd>F7</kbd>) and make sure the __C-RUN Runtime Checking__ options are set as below
-
+7. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and make sure that the __C-RUN Runtime Checking__ options are:
 >__C-RUN Runtime Checking__
 >- [x] Enable
 >   - [ ] Use checked heap
@@ -230,39 +222,35 @@ To run this example, follow the steps below.
 >   
 >__Global bounds table__
 >- [x] Check pointers from non-instrumented memory
-
-8. Build and run the program again. This time you should see one C-RUN message for the third `printf()` statement.
->Read the source code and compare the use of `__as_make_bounds()` for the pointer `ap` to how the bounds are set for the pointer used in the next `printf()` statement. We have also defined a project-specific macro to control the use of `__as_make_bounds()`. This built-in function is used when the returned pointer must be given sensible bounds. If for returned pointers is not given bounds, a bounds error will be generated on the first access made to the pointer. Note that this build configuration defines a preprocessor symbol called `CONFIG` that conditionally compile with `__as_make_bounds()` calls for giving pointers sensible bounds.
-
+8. Build and run the application again. This time you should see one C-RUN message for the third `printf()` statement.
+>Read the source code and compare the use of `__as_make_bounds()` for the pointer `ap` to how the bounds are set for the pointer used in the next `printf()` statement. We have also defined a project-specific macro to control the use of `__as_make_bounds()`. This built-in function is used when the returned pointer must be given sensible bounds. If no bounds are given for returned pointers, a bounds error will be generated on the first access made to the pointer. Note that this build configuration defines a preprocessor symbol called `CONFIG` that conditionally compiles with `__as_make_bounds()` calls to give pointers sensible bounds.
 9. Comment out one of the calls to the `CRUN_MAKE_BOUNDS()` macro, rebuild and run.
->:grey_question: Did it change the output in the __C-RUN Messages__?
-
+>:grey_question: Did it change the output in the __C-RUN Messages__ window?
 
 <!-- --------------------------------------------------------------------------------------------------- -->
-### `Heap Checking` capabilities
-C-RUN can check for errors in the use of heap memory. _Heap checking_ can catch when the application tries to use already freed memory, non-matching deallocation attempts and even leaked heap blocks.
+### Heap checking capabilities
+C-RUN can check for errors in how heap memory is being used. _Heap checking_ can catch when the application tries to use already freed memory, non-matching deallocation attempts, and leaked heap blocks.
 
-When using _Heap checking_, each memory block is expanded with bookkeeping information and a buffer area, so that the blocks as seen by the application are not located side-by-side.
+When you use _heap checking_, each memory block is expanded with bookkeeping information and a buffer area, so that the blocks as seen by the application are not located side-by-side.
 
-The various checker functions examine the bookkeeping information and the buffer areas and reports violations of correct heap usage.
+The various checker functions examine the bookkeeping information and the buffer areas and report violations of correct heap usage.
 
->:warning: Using _checked heap_ substantially increases the likelihood of finding heap usage errors, but it’s **not** fail-safe.
+>:warning: Using _heap checking_ makes it much easier to find heap usage errors, but it is **not** fail-safe.
 >
->:warning: _Checked heap_ and _bounds checking_ can complement each other when tracking down dynamic memory usage errors. However, due to potential impact in terms of performance and overhead, it’s **not** advised to enable both at the same time.
+>:warning: _Heap checking_ and _bounds checking_ can complement each other in identifying dynamic memory usage errors. However, because of the potential impact in terms of performance and overhead, you are advised **not** to enable both at the same time.
 
-To run this example, follow the steps below.
+To run this example, do this:
 
 1. Select the _Heap_ project.
 
-2. Go to __Project__  →  __Options__ → __Runtime Checking__ (<kbd>Alt</kbd> + <kbd>F7</kbd>).
+2. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__.
 
-3. Make sure that _Use checked heap_ is enabled
+3. Make sure that _Use checked heap_ is enabled:
 >__C-RUN Runtime Checking__
 >- [x] Enable
 >   - [x] Use checked heap
 >   - [ ] Enable bounds checking
-
-4. Download and Debug the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
+4. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
 5. For each reported error, examine the comments at that location in the code.
 
@@ -271,69 +259,70 @@ To run this example, follow the steps below.
 listsize = __iar_set_delayed_free_size(2);
 ```
 
-7. Rebuild, Download and Debug the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
+7. Rebuild, and __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ## Using C-RUN in non-interactive mode
-There are scenarios in which debugging an application built with C-RUN information in C-SPY Debugger directly from the IDE might not be possible. The reason might be due to the need for electrical insulation, or the need to run the device in its real operating environment where there is no access to debug ports, etc.
+There are scenarios where it might not be possible to debug an application built with C-RUN information directly in the IDE. Perhaps there is need for electrical insulation, or for running the device in its real operating environment where there is no access to debug ports, etc.
 
-By default, C-RUN messages on the IDE are displayed in the __C-RUN Messages__ window. These messages can alternatively be redirected to the Standard Output (__`stdout`__). When we consider this option, capturing the C-RUN Messages during field testing for post-mortem analysis starts to sound like a plan.
+By default, C-RUN messages are displayed in the __C-RUN Messages__ window in the IDE. The messages can alternatively be redirected to the the standard output stream (__`stdout`__). This means that capturing the C-RUN messages during field testing for post-mortem analysis might be attractive.
 
-### Redirecting C-RUN Messages to the Standard Output
+### Redirecting C-RUN messages to the standard output stream
 All you need to do is to redirect the built-in function `__iar_ReportCheckFailed()` to `__iar_Report_Check_FailedStdOut()`.
 
-1. Choose an Application Project built with C-RUN information.
+1. Choose an application project built with C-RUN information.
 
-2. Go to __Category__ → __Linker__ → __Extra Options__ and
->- [x] Use command line options
->
->Command line options: (one per line)
->
+2. Choose __Project__ → __Options__ → __Linker__ → __Extra Options__ and specify this command line option:
 >```
 >--redirect __iar_ReportCheckFailed=__iar_ReportCheckFailedStdout
 >```
->:bulb: For your convenience, the source file `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdOut.c`, which implements the `__iar_Report_Check_FailedStdOut()` function was added to every application project in this guide's workspace. The source file comes bundled with your product's installation, it is there only for reference as it was __excluded from build__, and can be used as starting point for eventual customizations (e.g., serial port output).
+>
+>:bulb: For your convenience, the source file `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdOut.c`, which implements the `__iar_Report_Check_FailedStdOut()` function, was added to every application project in this guide's workspace. The source file comes bundled with your product's installation. It is only there for reference as it was __excluded from build__, and it can be used as starting point for any customizations (for example, serial port output).
 
-3. __Download and Debug__ the executable (<kbd>CTRL</kbd> + <kbd>D</kbd>).
+3. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
-4. Go to __View__ → __C-RUN__ → __Messages__.
-5. Go to __View__ → __Terminal I/O__.
-6. Go to __Debug__ → __Logging__ → __Set Terminal I/O Log File...__ and __Enable Terminal I/O log file__.
+4. Choose __View__ → __C-RUN__ → __Messages__ to open the __C-RUN Messages__ window.
+5. Choose __View__ → __C-RUN__ → __Terminal I/O__ to open the __Terminal I/O__ window.
+6. Choose __Debug__ → __Logging__ → __Set Terminal I/O Log File__ and select the __Enable Terminal I/O log file__ option.
 
 ![image](https://user-images.githubusercontent.com/54443595/223496215-7f2f5bbe-82ea-440b-a204-17987c7c9321.png)
->:bulb: We will use _TermIO.log_ later.
+>:bulb: We will use the `TermIO.log` file later.
 
-7. Hit <kbd>F5</kbd> to resume the program execution.
->Note that now the __C-RUN Messages__ window shows nothing. The messages were redirected to `stdout` and now each message is printed out in raw format in the C-SPY Terminal I/O.
+7. Press <kbd>F5</kbd> to resume the application execution.
+>Note that the __C-RUN Messages__ window is empty now. Any messages are redirected to `stdout`, and each message is printed in raw format in the C-SPY __Terminal I/O__ window:
 
 ![image](https://user-images.githubusercontent.com/54443595/223490090-3c0e7441-f31e-4a0b-b867-90228029b013.png)
+>:bulb: C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
 
->:bulb: C-RUN for Arm depends on the semihosting interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code running on the target system to interface with a debugger running on the host computer while taking advantage of its low-level I/O facilities.
 
 ### Running the application from the command line
-The IAR Embedded Workbench includes the IAR C-SPY Command Line Utility (`cspybat.exe`). This utility enables you to run applications from the command line. When an application for Arm is built using the runtime library semihosting option, the utility can take advantage of the host's Standard Output (__stdout__) for printing out application's messages (e.g., via `printf()`, etc.).  
+IAR Embedded Workbench includes the IAR C-SPY Command Line Utility (`cspybat.exe`). Using this utility, C-SPY can run applications from the command line. When an application for Arm is built using the runtime library semihosting option, this utility can take advantage of the host's standard output stream (__stdout__) to print the application's messages (for example, via `printf()`, etc.).
 
 1. Launch a __Command Prompt__ shell and change to the __settings__ folder.
 
-2. Execute `<project-name>.Debug.cspy.bat`, replacing the `<project-name>` by your actual project's name.
->For every build configuration you create, the IAR Embedded Workbench will create an automatic batch file (`<project-name>.<build-configuration>.cspy.bat`) for you. Take a peek at the script and its accompanying files and you will see all the project's parameters necessary for executing the application from the command line.
+2. Execute `<project-name>.Debug.cspy.bat`, replacing `<project-name>` with your actual project's name.
+>For every build configuration you create, IAR Embedded Workbench will create an automatic batch file (`<project-name>.<build-configuration>.cspy.bat`) for you. Inspect the script and its accompanying files and you will see all project parameters that are needed to execute the application from the command line.
 
-### Filtering C-RUN Raw Messages
-The C-RUN Messages are encoded in a way to be used from the IDE. From the console they are shown in raw text format. The `cspybat` utility provides the `--rtc_filter` option for transforming the raw messages into their human-readable counterparts.
 
-1. Edit `settings\<project-name>.Debug.general.xcl`, append the following line after `--rtc_enable` and save:
+### Filtering C-RUN raw messages
+The C-RUN messages are encoded to be used in the IDE. In the console they are shown in raw text format. The `cspybat` utility provides the `--rtc_filter` option for converting the raw messages to human-readable text.
+
+1. Edit `settings\<project-name>.Debug.general.xcl`, to add this line after `--rtc_enable`, and save:
 ```
 --rtc_filter
 ```
 
 2. Execute the project's `.cspy.bat` file.
-> You will notice that now, in filtering mode, `cspybat` waits for input. We could paste C-SPY raw messages on the terminal executing C-SPY and they would be automatically translated to their human-readable counterparts.
+> Notice that now, in filtering mode, `cspybat` waits for input. You could paste C-SPY raw messages in the terminal that executes C-SPY and they would be automatically converted to human-readable text.
 
-3. Now let's take advantage of previously generated messages we got during _Redirecting C-RUN Messages to the Standard Output_ and redirect it as input for running C-SPY with the C-RUN filtering capabilities:
+3. Take advantage of previously generated messages you got in [Redirecting C-RUN messages to the standard output stream](#redirecting-c-run-messages-to-the-standard-output-stream) and redirect them as input for running C-SPY with the C-RUN filtering capabilities:
 ```
 ...\settings><project-name>.Debug.cspy.bat < ..\TermIO.log
 ```
+
+<details><summary><b>Expected output example</b> (click to expand)</summary>
+
 >```
 >...\crun-evaluation-guide\arm\settings>"C:\IAR\EW\ARM\8.11.1\common\bin\cspybat" 
 > -f "...\crun-evaluation-guide\arm\settings\Arithmetic.Debug.general.xcl" 
@@ -374,58 +363,60 @@ The C-RUN Messages are encoded in a way to be used from the IDE. From the consol
 >-- Switch to undefined case label.
 >-- Arithmetic.c\84:3-12
 >```
->:warning: Differently from when using from the IDE, C-RUN raw messages do __not__ contain call stack information.
+>:warning: In contrast to using C-RUN from the IDE, C-RUN raw messages do __not__ contain call stack information.
 
-## Redirecting C-RUN Raw Messages to a serial port
-The information in this section serves as basis for you to customize the routing of the C-RUN raw messages in your applications.
-It is provided without source code relying on any hardware-specific communication peripherals.
-Instead we will abstract from hardware implementation details and refer to a generic `serial_send(channel, unsigned char)` function.
+</details>
 
-It is assumed that the hardware peripheral has been correctly initialized for operation and that a similar function has been implemented somewhere else in your application's drivers.
+## Redirecting C-RUN raw messages to a serial port
+Use the information in this section to customize how C-RUN raw messages are routed in your applications.
+We will not offer any source code that relies on hardware-specific communication peripherals.
+Instead, we will abstract from hardware implementation details and refer to a generic `serial_send(channel, unsigned char)` function.
 
-Now that we understand the mechanics of redirecting the C-RUN raw messages to `stdout` we can inspect how to customize the `__iar_ReportCheckFailedStdout()` for printing out to a serial port, starting from the provided `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdout.c` source file.
+We assume that the hardware peripheral has been correctly initialized for operation, and that a similar function has been implemented somewhere else in your application's drivers.
+
+Now that you know how to redirect C-RUN raw messages to `stdout`, you can customize the `__iar_ReportCheckFailedStdout()` function to print to a serial port, starting from the provided `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdout.c` source file.
 
 1. Add the `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdout.c` source file to your project.
 
 2. Open `ReportCheckFailedStdout.c`.
->When looking at the file's tab on the editor window you might see `[RO]` (read-only). This indicates that the file is being added directly from the IAR Embedded Workbench installation folder, which is write-protected. It is advised to leave this file intact for future reference.
+>On the editor window tab you might see __[Read-Only]__ or __[RO]__. This indicates that the file was added directly from the IAR Embedded Workbench installation directory, which is write-protected. Leave this file unchanged for future reference.
+3. Choose __File__ → __Save As__.
 
-3. Go to __File__ → __Save as...__.
+4. A message is displayed asking "The file is read-only. Would you like to remove the read-only attribute?". Click __No__, navigate to the project's folder and save a copy of the file there.
+>Now, __[Read-Only]__ (or __[RO]__) should not be visible on the editor tab.
 
-4. A message window will pop-up saying "The file is read-only. Would you like to remove the read-only attribute?". Answer `NO`, then from the "Save As..." dialog window, navigate back to the project's folder and save a copy of the file there.
->If the file had the `[RO]` on its tab before, it should be gone now.
-
-5. In the function `__iar_ReportCheckFailedStdout()` comment the call to `__write()` and insert the following code:
+5. In the function `__iar_ReportCheckFailedStdout()`, comment out the call to `__write()` and insert the following code:
 ```c
   //__write(_LLIO_STDOUT, (unsigned char const *)buf, (size_t)(b - buf));
-
   for (size_t i = 0; i < (size_t)(b - buf); i++)
   {
     serial_send(USART6, (unsigned char)buf[i]);
   }
 ```
 
->:bulb: `serial_send()` could be replaced by another function that sends the characters from teh C-RUN messages strings to other mediums such as SPI, I2C, RAM, Flash, etc.
+>:bulb: `serial_send()` could be replaced by another function that sends the characters from the C-RUN messages strings to other media such as SPI, I2C, RAM, Flash, etc.
 
->:bulb: Alternatively, the low-level I/O `__write()` function can be overriden if that does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
+>:bulb: Alternatively, the low-level I/O `__write()` function can be overridden, provided that it does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
+
 
 ### Run the board in stand-alone mode
 1. Launch a Virtual Terminal Emulator (such as Tera Term VT) and connect it to the serial port.
-2. __Download and Debug__ the application.
-3. Power off, unplug the debugging probe from the board.
-4. Power the board. and verify that the C-RUN raw messages are being displayed in your Virtual Terminal Emulator.
+2. Choose __Project__ → __Download and Debug__ to start executing the application.
+3. Power off and disconnect the debug probe from the board.
+4. Power up the board and verify that the C-RUN raw messages are being displayed in your Virtual Terminal Emulator.
 
 ![image](https://user-images.githubusercontent.com/54443595/223522886-2e792b4f-0deb-41a3-b4d5-8f2d76c89e85.png)
 >C-RUN raw messages should be seen from the Virtual Terminal Emulator.
+For C-RUN messages collected from the serial port during the field test, do as explained in the [Filtering C-RUN Raw Messages](##filtering-c-run-raw-messages) section: feed the raw messages so that the `--rtc_filter` option converts them to human-readable format.
 
-In possession of the C-RUN Messages collected from the serial port during the field test, proceed as previously explained in the [Filtering C-RUN Raw Messages](##filtering-c-run-raw-messages) subsection, by feeding the raw messages so that the `--rtc_filter` option translates them into their human-readable counterparts for you.
+>:bulb: To prevent `cspybat` from re-flashing a target when filtering C-RUN raw data this way, choose __Project__ → __Options__ → __Debugger__ → __Download__ and deselect the option __Use flash loader(s)__. The corresponding `.cspy.bat` script in the settings folder will be updated accordingly when you close the workspace. 
 
->:bulb: For preventing `cspybat` from re-flashing a target when using it to filter C-RUN raw data, go to __Project Options__ → __Debugger__ → __Download__ and deselect :white_medium_square: Use flash loader(s), so that the corresponding `.cspy.bat` script in the settings folder will be updated accordingly when you close the Workspace. 
 
 ## Summary
-C-RUN is a powerful runtime analysis add-on for the IAR Embedded Workbench which can make a difference when running field tests. Are you interested in using C-RUN for your projects? [__Request a quote__](https://iar.com/buy) for the licensing option that suits your needs.
+C-RUN is a powerful runtime analysis add-on for IAR Embedded Workbench that can make a difference when you run field tests. Are you interested in using C-RUN for your projects? [__Request a quote__](https://iar.com/buy) for the licensing option that suits your needs.
 
-For in-depth C-RUN information, refer to the section _C-RUN runtime error checking_ in the _C-SPY Debugging Guide_ documentation bundled with the IAR product in use.
+For in-depth C-RUN information, refer to _C-RUN runtime error checking_ in the _C-SPY Debugging Guide_ bundled with the IAR product you use.
+
 
 ## Issues
 
@@ -433,12 +424,11 @@ For in-depth C-RUN information, refer to the section _C-RUN runtime error checki
 The information in this repository is subject to change without notice and does not represent a commitment on any part of IAR. While the information contained 
 herein is assumed to be accurate, IAR assumes no responsibility for any errors or omissions.
 
-Found an issue or have a suggestion related to [this guide][url-repo]? Feel free to use its public issue tracker.
+Have you found an issue or do you have a suggestion related to [this guide][url-repo]? Please use the public issue tracker.
 - Do not forget to take a look at [earlier issues][url-repo-issue-old].
-- If creating a [new][url-repo-issue-new] issue, please describe it in detail.
+- If you create a [new][url-repo-issue-new] issue, please describe it in detail.
 
->:envelope: You can also privately reach out to us via <a href="mailto:fae.emea@iar.com?subject=[GitHub] C-RUN Evaluation Guide -- Contacting via email">e-mail</a>.
-
+>:envelope: You can also privately reach out to us via <a href="mailto:fae.emea@iar.com?subject=[GitHub] C-RUN Evaluation Guide -- Contacting via email">email</a>.
 <!-- Links -->
 [url-repo]:                https://github.com/iarsystems/crun-evaluation-guide
 [url-repo-wiki]:           https://github.com/iarsystems/crun-evaluation-guide/wiki
