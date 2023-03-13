@@ -188,7 +188,7 @@ To run this example, do this:
 2. Begin with the `DoNotcheckPointersFromNonInstrumentedCode` build configuration.
 >At the top of the __Workspace__ window, you can switch between existing build configurations.
 
-3. Choose __Project>Options>Runtime Checking__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) and confirm these settings:
+3. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and confirm these settings:
 >__C-RUN Runtime Checking__
 >- [x] Enable
 >   - [ ] Use checked heap
@@ -200,7 +200,7 @@ To run this example, do this:
 >   - [ ] Generate functions callable from non-instrumented code
 >   - [ ] Check pointers for non-instrumented functions
 
-4. Close the __Project Options__ dialog box, and choose **Project>Download and Debug** to start executing the application (<kbd>Ctrl</kbd>+<kbd>D</kbd>).
+4. Close the __Project Options__ dialog box, and choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 >You should get no C-RUN errors, or any other indications that something is wrong. In the `DoNotCheckPointersFromNonInstrumentedCode` build configuration, turning off bounds-checking information for library headers worked well- (As it should do in most cases; returned pointers will not be bounds-checked but will have associated bounds that are always "large enough" to accommodate them.) In other words, this means that pointers originating from your code will be checked, but not pointers from the library. This should normally be perfectly acceptable and the process is non-intrusive in terms of code changes.
 
 5. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
