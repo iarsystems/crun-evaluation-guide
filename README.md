@@ -42,8 +42,8 @@ To run the examples:
 
 The workspace will launch with a pre-selected project. In the workspace __Overview__ there are tabs for switching from one project to another:
 
-> __`Overview`__ `Arithmetic` `Bounds-checking` `< >`<br>
-
+> __`Overview`__ `Arithmetic` `Bounds-checking` `< >`
+>
 >:bulb: The arrow buttons scroll to tabs that did not fit into the window width. The window can be resized. Alternatively, right-click a project in the __Overview__ and choose __Set as active__ from the context menu.
 
 Below you will find specific instructions for running each of these projects.
@@ -142,10 +142,11 @@ To run this example, do this:
 6. Rebuild and run the project.
 
 ![image](https://user-images.githubusercontent.com/54443595/223133775-e597ae6e-fe4f-4d17-9f82-c6023bcdb6d1.png)
-
 > Note that now C-RUN highlighted an out-of-bounds access for `*(ap+2)`. However, the execution stopped earlier, at the first `printf()` statement. The reason is that the compiler determines that pointer addresses used as parameters for those `printf()` calls are related and, with that, C-RUN efficiently can test them in one go.
+
 7. Press <kbd>F5</kbd> to resume the execution.
 >:bulb: It will stop at the last statement of the application, indicating that the assignment is performed out of bounds. From a bounds-checking perspective, dynamically allocated memory is no different from local pointers, static buffers, or buffers on the stack.
+
 8. Again, choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and take a look at the __Global bounds table__ group box.
 > __Global bounds table__
 >   - [x] Check pointers from non-instrumented memory<br>
@@ -156,7 +157,7 @@ To run this example, do this:
 
 9. Set the __Number of entries__ to `1   ` and close the __Project Options__ dialog box.
 
-10. Rebuild, and download and debug the application (<kbd>Ctrl</kbd>+<kbd>D</kbd>).
+10. Rebuild, and __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
 > In this example, there is only one pointer that needs to be kept in the table, so a single entry is enough.
 
 <!-- --------------------------------------------------------------------------------------------------- -->
@@ -257,7 +258,7 @@ To run this example, do this:
 listsize = __iar_set_delayed_free_size(2);
 ```
 
-7. Rebuild, and __Download and debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>)  the application.
+7. Rebuild, and __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
@@ -314,10 +315,13 @@ The C-RUN messages are encoded to be used in the IDE. In the console they are sh
 2. Execute the project's `.cspy.bat` file.
 > Notice that now, in filtering mode, `cspybat` waits for input. You could paste C-SPY raw messages in the terminal that executes C-SPY and they would be automatically converted to human-readable text.
 
-3. Take advantage of previously generated messages you got in [Redirecting C-RUN messages to the standard output stream]()_ and redirect them as input for running C-SPY with the C-RUN filtering capabilities:
+3. Take advantage of previously generated messages you got in [Redirecting C-RUN messages to the standard output stream](#redirecting-c-run-messages-to-the-standard-output-stream) and redirect them as input for running C-SPY with the C-RUN filtering capabilities:
 ```
 ...\settings><project-name>.Debug.cspy.bat < ..\TermIO.log
 ```
+
+<details><summary><b>Expected output example</b> (click to expand)</summary>
+
 >```
 >...\crun-evaluation-guide\arm\settings>"C:\IAR\EW\ARM\8.11.1\common\bin\cspybat" 
 > -f "...\crun-evaluation-guide\arm\settings\Arithmetic.Debug.general.xcl" 
@@ -359,6 +363,9 @@ The C-RUN messages are encoded to be used in the IDE. In the console they are sh
 >-- Arithmetic.c\84:3-12
 >```
 >:warning: In contrast to using C-RUN from the IDE, C-RUN raw messages do __not__ contain call stack information.
+
+</details>
+
 ## Redirecting C-RUN raw messages to a serial port
 Use the information in this section to customize how C-RUN raw messages are routed in your applications.
 We will not offer any source code that relies on hardware-specific communication peripherals.
@@ -372,10 +379,11 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
 
 2. Open `ReportCheckFailedStdout.c`.
 >On the editor window tab you might see __[Read-Only]__ or __[RO]__. This indicates that the file was added directly from the IAR Embedded Workbench installation directory, which is write-protected. Leave this file unchanged for future reference.
-3. Choose __File>Save As__.
+3. Choose __File__ → __Save As__.
 
-4. A message is displayed asking "The file is read-only. Would you like to remove the read-only attribute?". Click __No__ and navigate to the project's folder and save a copy of the file there.
+4. A message is displayed asking "The file is read-only. Would you like to remove the read-only attribute?". Click __No__, navigate to the project's folder and save a copy of the file there.
 >Now, __[Read-Only]__ (or __[RO]__) should not be visible on the editor tab.
+
 5. In the function `__iar_ReportCheckFailedStdout()`, comment out the call to `__write()` and insert the following code:
 ```c
   //__write(_LLIO_STDOUT, (unsigned char const *)buf, (size_t)(b - buf));
@@ -383,14 +391,16 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
   {
     serial_send(USART6, (unsigned char)buf[i]);
   }
-}    
 ```
 
 >:bulb: `serial_send()` could be replaced by another function that sends the characters from the C-RUN messages strings to other media such as SPI, I2C, RAM, Flash, etc.
+
 >:bulb: Alternatively, the low-level I/O `__write()` function can be overridden, provided that it does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
+
+
 ### Run the board in stand-alone mode
 1. Launch a Virtual Terminal Emulator (such as Tera Term VT) and connect it to the serial port.
-2. Choose __Project>Download and Debug__ to start executing the application.
+2. Choose __Project__ → __Download and Debug__ to start executing the application.
 3. Power off and disconnect the debug probe from the board.
 4. Power up the board and verify that the C-RUN raw messages are being displayed in your Virtual Terminal Emulator.
 
@@ -398,11 +408,14 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
 >C-RUN raw messages should be seen from the Virtual Terminal Emulator.
 For C-RUN messages collected from the serial port during the field test, do as explained in the [Filtering C-RUN Raw Messages](##filtering-c-run-raw-messages) section: feed the raw messages so that the `--rtc_filter` option converts them to human-readable format.
 
->:bulb: To prevent `cspybat` from re-flashing a target when filtering C-RUN raw data this way, choose __Project Options>Debugger>Download__ and deselect the option __Use flash loader(s)__. The corresponding `.cspy.bat` script in the settings folder will be updated accordingly when you close the workspace. 
+>:bulb: To prevent `cspybat` from re-flashing a target when filtering C-RUN raw data this way, choose __Project__ → __Options__ → __Debugger__ → __Download__ and deselect the option __Use flash loader(s)__. The corresponding `.cspy.bat` script in the settings folder will be updated accordingly when you close the workspace. 
+
+
 ## Summary
 C-RUN is a powerful runtime analysis add-on for IAR Embedded Workbench that can make a difference when you run field tests. Are you interested in using C-RUN for your projects? [__Request a quote__](https://iar.com/buy) for the licensing option that suits your needs.
 
 For in-depth C-RUN information, refer to _C-RUN runtime error checking_ in the _C-SPY Debugging Guide_ bundled with the IAR product you use.
+
 
 ## Issues
 
