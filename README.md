@@ -151,6 +151,7 @@ To run this example, do this:
 > __Global bounds table__
 >   - [x] Check pointers from non-instrumented memory<br>
 >   Number of entries `2   `
+
 >Pointers that can be accessed through other pointers must have information in a table stored in memory. The __Number of entries__ field allows you to fine-tune the number of slots available in the table.
 >
 >:warning: Leaving __Number of entries__ blank will remove the limit, resulting in a large global bounds table (4k slots!). The number of entries you need is often fairly low, so you might want to experiment with shrinking the global table, to lower the resource consumption for the instrumentation. Do not worry if you use a number that is too low; if this happens, you will get a warning message telling you that the global bounds table is running out of slots.
