@@ -24,7 +24,7 @@ This guide works for any of these products, given that the requirements are met:
 | IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 3.10 or later | - Standard, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/renesas/iar-embedded-workbench-for-renesas-rx/iar-embedded-workbench-for-renesas-rx---free-trial-version/) |
 
 >### C-RUN licensing considerations
->:bulb: No special action needs to be taken when you evaluate C-RUN in code-size-limited mode using the time-limited trial version. This mode was created to allow customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
+>__Note__ No special action needs to be taken when you evaluate C-RUN in code-size-limited mode using the time-limited trial version. This mode was created to allow customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
 >
 >:warning: The size-limited mode is __not__ intended for use in a production environment. [Contact](https://iar.com/contact) your IAR representative for access to non-limited licensing.
 >
@@ -110,7 +110,7 @@ To run this example, do this:
 
 13. By default, C-RUN will __Stop__ at each detected error. In the __C-RUN Messages__ window, the _Default action_ can be changed to __Log__ or __Ignore__.
 
->:bulb: __C-RUN Messages__ can be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
+>__Note__ __C-RUN Messages__ can be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ### Bounds checking
@@ -279,7 +279,7 @@ All you need to do is to redirect the built-in function `__iar_ReportCheckFailed
 >--redirect __iar_ReportCheckFailed=__iar_ReportCheckFailedStdout
 >```
 >
->:bulb: For your convenience, the source file `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdOut.c`, which implements the `__iar_Report_Check_FailedStdOut()` function, was added to every application project in this guide's workspace. The source file comes bundled with your product's installation. It is only there for reference as it was __excluded from build__, and it can be used as starting point for any customizations (for example, serial port output).
+> __Note__ For your convenience, the source file `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdOut.c`, which implements the `__iar_Report_Check_FailedStdOut()` function, was added to every application project in this guide's workspace. The source file comes bundled with your product's installation. It is only there for reference as it was __excluded from build__, and it can be used as starting point for any customizations (for example, serial port output).
 
 3. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
@@ -288,13 +288,13 @@ All you need to do is to redirect the built-in function `__iar_ReportCheckFailed
 6. Choose __Debug__ → __Logging__ → __Set Terminal I/O Log File__ and select the __Enable Terminal I/O log file__ option.
 
 ![image](https://user-images.githubusercontent.com/54443595/223496215-7f2f5bbe-82ea-440b-a204-17987c7c9321.png)
->:bulb: We will use the `TermIO.log` file later.
+> __Note__ We will use the `TermIO.log` file later.
 
 7. Press <kbd>F5</kbd> to resume the application execution.
 >Note that the __C-RUN Messages__ window is empty now. Any messages are redirected to `stdout`, and each message is printed in raw format in the C-SPY __Terminal I/O__ window:
 
 ![image](https://user-images.githubusercontent.com/54443595/223490090-3c0e7441-f31e-4a0b-b867-90228029b013.png)
->:bulb: C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
+> __Note__ C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
 
 
 ### Running the application from the command line
@@ -364,7 +364,7 @@ The C-RUN messages are encoded to be used in the IDE. In the console they are sh
 >-- Switch to undefined case label.
 >-- Arithmetic.c\84:3-12
 >```
->:warning: In contrast to using C-RUN from the IDE, C-RUN raw messages do __not__ contain call stack information.
+> __Note__ In contrast to using C-RUN from the IDE, C-RUN raw messages do __not__ contain call stack information.
 
 </details>
 
@@ -395,9 +395,9 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
   }
 ```
 
->:bulb: `serial_send()` could be replaced by another function that sends the characters from the C-RUN messages strings to other media such as SPI, I2C, RAM, Flash, etc.
+> __Note__ `serial_send()` could be replaced by another function that sends the characters from the C-RUN messages strings to other media such as SPI, I2C, RAM, Flash, etc.
 
->:bulb: Alternatively, the low-level I/O `__write()` function can be overridden, provided that it does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
+> __Note__ Alternatively, the low-level I/O `__write()` function can be overridden, provided that it does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
 
 
 ### Run the board in stand-alone mode
