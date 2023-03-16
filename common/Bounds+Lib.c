@@ -30,11 +30,9 @@
   *  +-> In this case, we need to give external pointers new bounds 
   *  +-> with the built-in function `__as_make_bounds()`
   */
-#ifdef __AS_BOUNDS__
-#if (CONFIG == CheckPointersFromNonInstrumentedCode) // CONFIG is set @ Preprocessor
+#if defined(__AS_BOUNDS__) && defined(CHECK_POINTERS) // set @ Preprocessor
 #define CRUN_MAKE_BOUNDS(pointer, size)  ( pointer = __as_make_bounds(pointer, size) )
 #define CRUN_MAKE_BOUNDS_VARIANT(pA, pB, size) ( pA = __as_make_bounds(pA, pB, size) )
-#endif
 #else
 #define CRUN_MAKE_BOUNDS(pointer, size)
 #define CRUN_MAKE_BOUNDS_VARIANT(pA, pB, size)
