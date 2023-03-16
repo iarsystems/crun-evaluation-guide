@@ -1001,7 +1001,7 @@
                 </option>
                 <option>
                     <name>IarchiveOutput</name>
-                    <state>$PROJ_DIR$/MaxLib.a</state>
+                    <state>$PROJ_DIR$/$PROJ_FNAME$.a</state>
                 </option>
             </data>
         </settings>

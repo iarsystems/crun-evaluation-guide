@@ -207,7 +207,7 @@
                 <debug>1</debug>
                 <option>
                     <name>CCDefines</name>
-                    <state>CONFIG=$CONFIG_NAME$</state>
+                    <state></state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -632,7 +632,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state></state>
+                    <state>Bounds-checking+libs.srec</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -687,7 +687,7 @@
                 </option>
                 <option>
                     <name>IlinkOutputFile</name>
-                    <state>Boundschecking_2.out</state>
+                    <state>$PROJ_FNAME$.out</state>
                 </option>
                 <option>
                     <name>IlinkDebugInfoEnable</name>
@@ -1222,7 +1222,7 @@
                 <debug>1</debug>
                 <option>
                     <name>CCDefines</name>
-                    <state>CONFIG=$CONFIG_NAME$</state>
+                    <state>CHECK_POINTERS</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1702,7 +1702,7 @@
                 </option>
                 <option>
                     <name>IlinkOutputFile</name>
-                    <state>Boundschecking_2.out</state>
+                    <state>$PROJ_FNAME$.out</state>
                 </option>
                 <option>
                     <name>IlinkDebugInfoEnable</name>

@@ -245,7 +245,7 @@
                 </option>
                 <option>
                     <name>CCDefines</name>
-                    <state>CONFIG=$CONFIG_NAME$</state>
+                    <state></state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1211,7 +1211,7 @@
                 </option>
                 <option>
                     <name>CCDefines</name>
-                    <state>CONFIG=$CONFIG_NAME$</state>
+                    <state>CHECK_POINTERS</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
