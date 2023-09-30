@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-    <fileVersion>3</fileVersion>
+    <fileVersion>4</fileVersion>
     <configuration>
         <name>DoNotCheckPointersFromNonInstrumentedCode</name>
         <toolchain>
@@ -9,7 +9,7 @@
         <debug>1</debug>
         <settings>
             <name>C-SPY</name>
-            <archiveVersion>3</archiveVersion>
+            <archiveVersion>5</archiveVersion>
             <data>
                 <version>6</version>
                 <wantNonLocal>1</wantNonLocal>
@@ -138,22 +138,14 @@
         </settings>
         <settings>
             <name>RXEMUE20</name>
-            <archiveVersion>4</archiveVersion>
+            <archiveVersion>5</archiveVersion>
             <data>
-                <version>5</version>
+                <version>6</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
                     <name>EmuMandatory</name>
                     <state>1</state>
-                </option>
-                <option>
-                    <name>OCEmuUseUSBSerialNo</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>OCEmuUSBSerialNo</name>
-                    <state></state>
                 </option>
                 <option>
                     <name>OCDownloadSuppressDownload</name>
@@ -183,26 +175,67 @@
                     <name>E20DoLogfile</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>OCEmuSerialNo2</name>
+                    <state>Automatic</state>
+                </option>
+            </data>
+        </settings>
+        <settings>
+            <name>RXE2</name>
+            <archiveVersion>2</archiveVersion>
+            <data>
+                <version>2</version>
+                <wantNonLocal>1</wantNonLocal>
+                <debug>1</debug>
+                <option>
+                    <name>E2Mandatory</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>E2DownloadSuppressDownload</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DownloadVerifyAll</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DebuggingMode</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DownloadExcecuteAfterFlash</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DownloadOnlyChangedBlocks</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2LogFile</name>
+                    <state>$PROJ_DIR$\cspycomm.log</state>
+                </option>
+                <option>
+                    <name>E2DoLogfile</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2SerialNo2</name>
+                    <state>Automatic</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>RXE2LITE</name>
-            <archiveVersion>1</archiveVersion>
+            <archiveVersion>2</archiveVersion>
             <data>
-                <version>1</version>
+                <version>2</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
                     <name>E2LiteMandatory</name>
                     <state>1</state>
-                </option>
-                <option>
-                    <name>E2LiteUseUSBSerialNo</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>E2LiteUSBSerialNo</name>
-                    <state></state>
                 </option>
                 <option>
                     <name>E2LiteDownloadSuppressDownload</name>
@@ -231,6 +264,10 @@
                 <option>
                     <name>E2LiteDoLogfile</name>
                     <state>0</state>
+                </option>
+                <option>
+                    <name>E2LiteSerialNo2</name>
+                    <state>Automatic</state>
                 </option>
             </data>
         </settings>
@@ -297,14 +334,22 @@
         </settings>
         <settings>
             <name>SIMRX</name>
-            <archiveVersion>1</archiveVersion>
+            <archiveVersion>2</archiveVersion>
             <data>
-                <version>2</version>
+                <version>4</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
                     <name>SimMandatory</name>
                     <state>1</state>
+                </option>
+                <option>
+                    <name>SimHaveTfu</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>SimTfuVersion</name>
+                    <state>0</state>
                 </option>
             </data>
         </settings>
@@ -338,11 +383,11 @@
                 <loadFlag>0</loadFlag>
             </plugin>
             <plugin>
-                <file>$EW_DIR$\common\plugins\CodeCoverage\CodeCoverage.ENU.ewplugin</file>
-                <loadFlag>1</loadFlag>
+                <file>$EW_DIR$\common\plugins\Orti\Orti.ENU.ewplugin</file>
+                <loadFlag>0</loadFlag>
             </plugin>
             <plugin>
-                <file>$EW_DIR$\common\plugins\Orti\Orti.ENU.ewplugin</file>
+                <file>$EW_DIR$\common\plugins\TargetAccessServer\TargetAccessServer.ENU.ewplugin</file>
                 <loadFlag>0</loadFlag>
             </plugin>
             <plugin>
@@ -359,7 +404,7 @@
         <debug>1</debug>
         <settings>
             <name>C-SPY</name>
-            <archiveVersion>3</archiveVersion>
+            <archiveVersion>5</archiveVersion>
             <data>
                 <version>6</version>
                 <wantNonLocal>1</wantNonLocal>
@@ -488,22 +533,14 @@
         </settings>
         <settings>
             <name>RXEMUE20</name>
-            <archiveVersion>4</archiveVersion>
+            <archiveVersion>5</archiveVersion>
             <data>
-                <version>5</version>
+                <version>6</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
                     <name>EmuMandatory</name>
                     <state>1</state>
-                </option>
-                <option>
-                    <name>OCEmuUseUSBSerialNo</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>OCEmuUSBSerialNo</name>
-                    <state></state>
                 </option>
                 <option>
                     <name>OCDownloadSuppressDownload</name>
@@ -533,26 +570,67 @@
                     <name>E20DoLogfile</name>
                     <state>0</state>
                 </option>
+                <option>
+                    <name>OCEmuSerialNo2</name>
+                    <state>Automatic</state>
+                </option>
+            </data>
+        </settings>
+        <settings>
+            <name>RXE2</name>
+            <archiveVersion>2</archiveVersion>
+            <data>
+                <version>2</version>
+                <wantNonLocal>1</wantNonLocal>
+                <debug>1</debug>
+                <option>
+                    <name>E2Mandatory</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>E2DownloadSuppressDownload</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DownloadVerifyAll</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DebuggingMode</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DownloadExcecuteAfterFlash</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2DownloadOnlyChangedBlocks</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2LogFile</name>
+                    <state>$PROJ_DIR$\cspycomm.log</state>
+                </option>
+                <option>
+                    <name>E2DoLogfile</name>
+                    <state>0</state>
+                </option>
+                <option>
+                    <name>E2SerialNo2</name>
+                    <state>Automatic</state>
+                </option>
             </data>
         </settings>
         <settings>
             <name>RXE2LITE</name>
-            <archiveVersion>1</archiveVersion>
+            <archiveVersion>2</archiveVersion>
             <data>
-                <version>1</version>
+                <version>2</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
                     <name>E2LiteMandatory</name>
                     <state>1</state>
-                </option>
-                <option>
-                    <name>E2LiteUseUSBSerialNo</name>
-                    <state>0</state>
-                </option>
-                <option>
-                    <name>E2LiteUSBSerialNo</name>
-                    <state></state>
                 </option>
                 <option>
                     <name>E2LiteDownloadSuppressDownload</name>
@@ -581,6 +659,10 @@
                 <option>
                     <name>E2LiteDoLogfile</name>
                     <state>0</state>
+                </option>
+                <option>
+                    <name>E2LiteSerialNo2</name>
+                    <state>Automatic</state>
                 </option>
             </data>
         </settings>
@@ -647,14 +729,22 @@
         </settings>
         <settings>
             <name>SIMRX</name>
-            <archiveVersion>1</archiveVersion>
+            <archiveVersion>2</archiveVersion>
             <data>
-                <version>2</version>
+                <version>4</version>
                 <wantNonLocal>1</wantNonLocal>
                 <debug>1</debug>
                 <option>
                     <name>SimMandatory</name>
                     <state>1</state>
+                </option>
+                <option>
+                    <name>SimHaveTfu</name>
+                    <state>1</state>
+                </option>
+                <option>
+                    <name>SimTfuVersion</name>
+                    <state>0</state>
                 </option>
             </data>
         </settings>
@@ -688,11 +778,11 @@
                 <loadFlag>0</loadFlag>
             </plugin>
             <plugin>
-                <file>$EW_DIR$\common\plugins\CodeCoverage\CodeCoverage.ENU.ewplugin</file>
-                <loadFlag>1</loadFlag>
+                <file>$EW_DIR$\common\plugins\Orti\Orti.ENU.ewplugin</file>
+                <loadFlag>0</loadFlag>
             </plugin>
             <plugin>
-                <file>$EW_DIR$\common\plugins\Orti\Orti.ENU.ewplugin</file>
+                <file>$EW_DIR$\common\plugins\TargetAccessServer\TargetAccessServer.ENU.ewplugin</file>
                 <loadFlag>0</loadFlag>
             </plugin>
             <plugin>

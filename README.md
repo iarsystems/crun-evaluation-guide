@@ -21,7 +21,7 @@ This guide works for any of these products, given that the requirements are met:
 | __Product__ | __Target architecture__ | __Required version__ | __Required license types__ |
 | - | - | - | - |
 | IAR Embedded Workbench | [Arm](https://iar.com/ewarm) | 8.11 or later | - Cortex-M, or<br>- Standard, or<br>- Extended, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/iar-embedded-workbench-for-arm---free-trial-version/) |
-| IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 3.10 or later | - Standard, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/renesas/iar-embedded-workbench-for-renesas-rx/iar-embedded-workbench-for-renesas-rx---free-trial-version/) |
+| IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 5.10 or later | - Standard, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/renesas/iar-embedded-workbench-for-renesas-rx/iar-embedded-workbench-for-renesas-rx---free-trial-version/) |
 
 >### C-RUN licensing considerations
 >__Note__ No special action needs to be taken when you evaluate C-RUN in code-size-limited mode using the time-limited trial version. This mode was created to allow customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
