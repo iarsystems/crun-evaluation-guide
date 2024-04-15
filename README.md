@@ -23,12 +23,11 @@ This guide works for any of these products, given that the requirements are met:
 | IAR Embedded Workbench | [Arm](https://iar.com/ewarm) | 8.11 or later | - Cortex-M, or<br>- Standard, or<br>- Extended, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/iar-embedded-workbench-for-arm---free-trial-version/) |
 | IAR Embedded Workbench | [Renesas RX](https://iar.com/ewrx) | 5.10 or later | - Standard, or<br>- [Time-limited trial version](https://www.iar.com/products/architectures/renesas/iar-embedded-workbench-for-renesas-rx/iar-embedded-workbench-for-renesas-rx---free-trial-version/) |
 
->### C-RUN licensing considerations
->__Note__ No special action needs to be taken when you evaluate C-RUN in code-size-limited mode using the time-limited trial version. This mode was created to allow customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
->
->:warning: The size-limited mode is __not__ intended for use in a production environment. [Contact](https://iar.com/contact) your IAR representative for access to non-limited licensing.
->
->:warning: C-RUN does not work with the size-limited trial version (KickStart license) of IAR Embedded Workbench.
+> [!NOTE]
+> No special action needs to be taken when you evaluate C-RUN in code-size-limited mode using the time-limited trial version. This special mode was created to allow customers to evaluate C-RUN using smaller pieces of code while exploring its tight integration with the IAR C-SPY Debugger.
+
+> [!TIP]
+> For access to a non-limited license [contact](https://iar.com/contact) your IAR representative.
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ## Exploring C-RUN
@@ -43,8 +42,9 @@ To run the examples:
 The workspace will launch with a pre-selected project. In the workspace __Overview__ there are tabs for switching from one project to another:
 
 > __`Overview`__ `Arithmetic` `Bounds-checking` `< >`
->
->:bulb: The arrow buttons scroll to tabs that did not fit into the window width. The window can be resized. Alternatively, right-click a project in the __Overview__ and choose __Set as active__ from the context menu.
+
+> [!TIP]
+> The arrow buttons scroll to tabs that did not fit into the window width. The window can be resized. Alternatively, right-click a project in the __Overview__ and choose __Set as active__ from the context menu.
 
 Below you will find specific instructions for running each of these projects.
 
@@ -110,7 +110,8 @@ To run this example, do this:
 
 13. By default, C-RUN will __Stop__ at each detected error. In the __C-RUN Messages__ window, the _Default action_ can be changed to __Log__ or __Ignore__.
 
->__Note__ __C-RUN Messages__ can be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
+> [!NOTE]
+> __C-RUN Messages__ can be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ### Bounds checking
@@ -145,16 +146,18 @@ To run this example, do this:
 > Note that now C-RUN highlighted an out-of-bounds access for `*(ap+2)`. However, the execution stopped earlier, at the first `printf()` statement. The reason is that the compiler determines that pointer addresses used as parameters for those `printf()` calls are related and, with that, C-RUN efficiently can test them in one go.
 
 7. Press <kbd>F5</kbd> to resume the execution.
->:bulb: It will stop at the last statement of the application, indicating that the assignment is performed out of bounds. From a bounds-checking perspective, dynamically allocated memory is no different from local pointers, static buffers, or buffers on the stack.
+> [!TIP]
+> It will stop at the last statement of the application, indicating that the assignment is performed out of bounds. From a bounds-checking perspective, dynamically allocated memory is no different from local pointers, static buffers, or buffers on the stack.
 
 8. Again, choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and take a look at the __Global bounds table__ group box.
 > __Global bounds table__
 >   - [x] Check pointers from non-instrumented memory<br>
 >   Number of entries `2   `
 
->Pointers that can be accessed through other pointers must have information in a table stored in memory. The __Number of entries__ field allows you to fine-tune the number of slots available in the table.
->
->:warning: Leaving __Number of entries__ blank will remove the limit, resulting in a large global bounds table (4k slots!). The number of entries you need is often fairly low, so you might want to experiment with shrinking the global table, to lower the resource consumption for the instrumentation. Do not worry if you use a number that is too low; if this happens, you will get a warning message telling you that the global bounds table is running out of slots.
+Pointers that can be accessed through other pointers must have information in a table stored in memory. The __Number of entries__ field allows you to fine-tune the number of slots available in the table.
+
+> [!WARNING]
+> Leaving __Number of entries__ blank will remove the limit, resulting in a large global bounds table (4k slots!). The number of entries you need is often fairly low, so you might want to experiment with shrinking the global table, to lower the resource consumption for the instrumentation. Do not worry if you use a number that is too low; if this happens, you will get a warning message telling you that the global bounds table is running out of slots.
 
 9. Set the __Number of entries__ to `1   ` and close the __Project Options__ dialog box.
 
@@ -236,9 +239,9 @@ When you use _heap checking_, each memory block is expanded with bookkeeping inf
 
 The various checker functions examine the bookkeeping information and the buffer areas and report violations of correct heap usage.
 
->:warning: Using _heap checking_ makes it much easier to find heap usage errors, but it is **not** fail-safe.
->
->:warning: _Heap checking_ and _bounds checking_ can complement each other in identifying dynamic memory usage errors. However, because of the potential impact in terms of performance and overhead, you are advised **not** to enable both at the same time.
+> [!WARNING]
+> - Using _heap checking_ makes it much easier to find heap usage errors, but it is **not** fail-safe.
+> - _Heap checking_ and _bounds checking_ can complement each other in identifying dynamic memory usage errors. However, because of the potential impact in terms of performance and overhead, you are advised **not** to enable both at the same time.
 
 To run this example, do this:
 
@@ -278,8 +281,9 @@ All you need to do is to redirect the built-in function `__iar_ReportCheckFailed
 >```
 >--redirect __iar_ReportCheckFailed=__iar_ReportCheckFailedStdout
 >```
->
-> __Note__ For your convenience, the source file `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdOut.c`, which implements the `__iar_Report_Check_FailedStdOut()` function, was added to every application project in this guide's workspace. The source file comes bundled with your product's installation. It is only there for reference as it was __excluded from build__, and it can be used as starting point for any customizations (for example, serial port output).
+
+> [!NOTE]
+> For your convenience, the source file `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdOut.c`, which implements the `__iar_Report_Check_FailedStdOut()` function, was added to every application project in this guide's workspace. The source file comes bundled with your product's installation. It is only there for reference as it was __excluded from build__, and it can be used as starting point for any customizations (for example, serial port output).
 
 3. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
@@ -294,7 +298,9 @@ All you need to do is to redirect the built-in function `__iar_ReportCheckFailed
 >Note that the __C-RUN Messages__ window is empty now. Any messages are redirected to `stdout`, and each message is printed in raw format in the C-SPY __Terminal I/O__ window:
 
 ![image](https://user-images.githubusercontent.com/54443595/223490090-3c0e7441-f31e-4a0b-b867-90228029b013.png)
-> __Note__ C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
+
+> [!NOTE]
+> C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
 
 
 ### Running the application from the command line
@@ -395,9 +401,9 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
   }
 ```
 
-> __Note__ `serial_send()` could be replaced by another function that sends the characters from the C-RUN messages strings to other media such as SPI, I2C, RAM, Flash, etc.
-
-> __Note__ Alternatively, the low-level I/O `__write()` function can be overridden, provided that it does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
+> [!NOTE]
+> - `serial_send()` could be replaced by another function that sends the characters from the C-RUN messages strings to other media such as SPI, I2C, RAM, Flash, etc.
+> - Alternatively, the low-level I/O `__write()` function can be overridden, provided that it does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
 
 
 ### Run the board in stand-alone mode
