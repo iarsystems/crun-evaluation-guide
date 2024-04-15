@@ -416,7 +416,8 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
 >C-RUN raw messages should be seen from the Virtual Terminal Emulator.
 For C-RUN messages collected from the serial port during the field test, do as explained in the [Filtering C-RUN Raw Messages](##filtering-c-run-raw-messages) section: feed the raw messages so that the `--rtc_filter` option converts them to human-readable format.
 
->:bulb: To prevent `cspybat` from re-flashing a target when filtering C-RUN raw data this way, choose __Project__ → __Options__ → __Debugger__ → __Download__ and deselect the option __Use flash loader(s)__. The corresponding `.cspy.bat` script in the settings folder will be updated accordingly when you close the workspace. 
+>[!TIP]
+> To prevent `cspybat` from re-flashing a target when filtering C-RUN raw data this way, choose __Project__ → __Options__ → __Debugger__ → __Download__ and deselect the option __Use flash loader(s)__. The corresponding `.cspy.bat` script in the settings folder will be updated accordingly when you close the workspace. 
 
 
 ## Summary
