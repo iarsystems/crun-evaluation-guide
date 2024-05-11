@@ -41,7 +41,7 @@ To run the examples:
 
 The workspace will launch with a pre-selected project. In the workspace __Overview__ there are tabs for switching from one project to another:
 
-> __`Overview`__ `Arithmetic` `Bounds-checking` `< >`
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/0e045f44-bb50-4de8-aa00-c55706d59671)
 
 > [!TIP]
 > The arrow buttons scroll to tabs that did not fit into the window width. The window can be resized. Alternatively, right-click a project in the __Overview__ and choose __Set as active__ from the context menu.
@@ -60,20 +60,12 @@ To run this example, do this:
 2. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__.
 
 3. Make sure that __C-RUN Runtime Checking__ is enabled
->__C-RUN Runtime Checking__
->- [x] Enable
->   - [ ] Use checked heap
->   - [ ] Enable bounds checking
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/79e69f03-a87c-4c75-afbf-fc210562554d)
+
 4. Make sure all these checks are selected:
->__Insert checks for__
->- [x] Integer overflow
->   - [x] Including unsigned 
->- [x] Integer conversion
->   - [x] Including explicit casts 
->- [x] Integer shift overflow
->   - [x] Including unsigned shifts 
->- [x] Division by zero
->- [x] Unhandled switch case
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/80cd14e7-7deb-43b1-9313-d3e7b13929f1)
 
 5. Click `  OK  ` to close the __Project Options__ dialog box.
 
@@ -96,14 +88,8 @@ To run this example, do this:
 10. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
 
 11. When you create applications, there are situations where relying on the wrap-around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can simply be deselected. In the project's __Runtime checking__ options, disable these:
->__Insert checks for__
->- [x] Integer overflow
->   - [ ] Including unsigned 
->- [x] Integer conversion
->   - [ ] Including explicit casts 
->- [x] Integer shift overflow
->   - [ ] Including unsigned shifts 
->- [x] Division by zero
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/3ec8fa7d-53e3-42ed-9df6-5e79406b5bc1)
 
 12. Rebuild, then __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
 > Disabling the checks you do not need will generally make execution faster and decrease the code size. 
@@ -129,16 +115,8 @@ To run this example, do this:
 4. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
 
 5. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and _enable bounds checking_:
->__C-RUN Runtime Checking__
->- [x] Enable
->   - [ ] Use checked heap
->   - [x] Enable bounds checking
->
->__Instrumentation__
->- [x] Track pointer bounds
->   - [x] Check accesses
->   - [ ] Generate functions callable from non-instrumented code
->   - [ ] Check pointers for non-instrumented functions
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/9581c3f2-ab79-4f4b-9ab4-d0ce0b350e22)
 
 6. Rebuild and run the project.
 
@@ -150,9 +128,8 @@ To run this example, do this:
 > It will stop at the last statement of the application, indicating that the assignment is performed out of bounds. From a bounds-checking perspective, dynamically allocated memory is no different from local pointers, static buffers, or buffers on the stack.
 
 8. Again, choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and take a look at the __Global bounds table__ group box.
-> __Global bounds table__
->   - [x] Check pointers from non-instrumented memory<br>
->   Number of entries `2   `
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/f84c7f68-9a58-4717-b605-3732aed4500c)
 
 Pointers that can be accessed through other pointers must have information in a table stored in memory. The __Number of entries__ field allows you to fine-tune the number of slots available in the table.
 
@@ -193,16 +170,8 @@ To run this example, do this:
 >At the top of the __Workspace__ window, you can switch between existing build configurations.
 
 3. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and confirm these settings:
->__C-RUN Runtime Checking__
->- [x] Enable
->   - [ ] Use checked heap
->   - [x] Enable bounds checking
->
->__Instrumentation__
->- [x] Track pointer bounds
->   - [x] Check accesses
->   - [ ] Generate functions callable from non-instrumented code
->   - [ ] Check pointers for non-instrumented functions
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/634f5447-51af-440e-95e2-b322a8e57011)
 
 4. Close the __Project Options__ dialog box, and choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 >You should get no C-RUN errors, or any other indications that something is wrong. In the `DoNotCheckPointersFromNonInstrumentedCode` build configuration, turning off bounds-checking information for library headers worked well- (As it should do in most cases; returned pointers will not be bounds-checked but will have associated bounds that are always "large enough" to accommodate them.) In other words, this means that pointers originating from your code will be checked, but not pointers from the library. This should normally be perfectly acceptable and the process is non-intrusive in terms of code changes.
@@ -213,19 +182,9 @@ To run this example, do this:
 >The `CheckPointersFromNonInstrumentedCode` build configuration demonstrates a situation where it is desirable to have _bounds checking_ for pointers and returned pointers defined in the library code.
 
 7. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__ and make sure that the __C-RUN Runtime Checking__ options are:
->__C-RUN Runtime Checking__
->- [x] Enable
->   - [ ] Use checked heap
->   - [x] Enable bounds checking
->
->__Instrumentation__
->- [x] Track pointer bounds
->   - [x] Check accesses
->   - [ ] Generate functions callable from non-instrumented code
->   - [x] Check pointers for non-instrumented functions
->   
->__Global bounds table__
->- [x] Check pointers from non-instrumented memory
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/7a16881f-d9ed-4ebd-8296-af3be6f198bc)
+
 8. Build and run the application again. This time you should see one C-RUN message for the third `printf()` statement.
 >Read the source code and compare the use of `__as_make_bounds()` for the pointer `ap` to how the bounds are set for the pointer used in the next `printf()` statement. We have also defined a project-specific macro to control the use of `__as_make_bounds()`. This built-in function is used when the returned pointer must be given sensible bounds. If no bounds are given for returned pointers, a bounds error will be generated on the first access made to the pointer. Note that this build configuration defines a preprocessor symbol called `CONFIG` that conditionally compiles with `__as_make_bounds()` calls to give pointers sensible bounds.
 9. Comment out one of the calls to the `CRUN_MAKE_BOUNDS()` macro, rebuild and run.
@@ -250,20 +209,15 @@ To run this example, do this:
 2. Choose __Project__ → __Options__ (<kbd>Alt</kbd>+<kbd>F7</kbd>) → __Runtime Checking__.
 
 3. Make sure that _Use checked heap_ is enabled:
->__C-RUN Runtime Checking__
->- [x] Enable
->   - [x] Use checked heap
->   - [ ] Enable bounds checking
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/c3f62008-cfcc-4525-919e-cef032226551)
+
 4. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
-5. For each reported error, examine the comments at that location in the code.
+5. Examine the source code comments for each reported error.
 
-6. Comment out the line
-```c
-listsize = __iar_set_delayed_free_size(2);
-```
-
-7. Rebuild, and __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
+>[!NOTE]
+>The function `HeapFunc3()` in `Heap.c` can be enabled by uncommenting the `CRUN_FULL_EDITION` macro definition. The function requires a full edition of C-RUN since its resource consumption will exceed the code size limitation in the time-limited trial version.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
