@@ -245,16 +245,18 @@ All you need to do is to redirect the built-in function `__iar_ReportCheckFailed
 5. Choose __View__ → __C-RUN__ → __Terminal I/O__ to open the __Terminal I/O__ window.
 6. Choose __Debug__ → __Logging__ → __Set Terminal I/O Log File__ and select the __Enable Terminal I/O log file__ option.
 
-![image](https://user-images.githubusercontent.com/54443595/223496215-7f2f5bbe-82ea-440b-a204-17987c7c9321.png)
-> __Note__ We will use the `TermIO.log` file later.
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/399ef849-3e02-4bb4-9592-e17c73824477)
+
+>[!NOTE]
+>We will use the `TermIO.log` file later.
 
 7. Press <kbd>F5</kbd> to resume the application execution.
 >Note that the __C-RUN Messages__ window is empty now. Any messages are redirected to `stdout`, and each message is printed in raw format in the C-SPY __Terminal I/O__ window:
 
-![image](https://user-images.githubusercontent.com/54443595/223490090-3c0e7441-f31e-4a0b-b867-90228029b013.png)
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/58a8030f-84a8-4d1b-ba0f-60d10ee89634)
 
-> [!NOTE]
-> C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
+>[!NOTE]
+>C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
 
 
 ### Running the application from the command line
@@ -340,7 +342,8 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
 1. Add the `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdout.c` source file to your project.
 
 2. Open `ReportCheckFailedStdout.c`.
->On the editor window tab you might see __[Read-Only]__ or __[RO]__. This indicates that the file was added directly from the IAR Embedded Workbench installation directory, which is write-protected. Leave this file unchanged for future reference.
+>On the editor window tab you might see __[Read-Only]__ (or __[RO]__). This indicates that the file was added directly from the IAR Embedded Workbench installation directory, which is write-protected. Leave this file unchanged for future reference.
+
 3. Choose __File__ → __Save As__.
 
 4. A message is displayed asking "The file is read-only. Would you like to remove the read-only attribute?". Click __No__, navigate to the project's folder and save a copy of the file there.
@@ -366,7 +369,8 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
 3. Power off and disconnect the debug probe from the board.
 4. Power up the board and verify that the C-RUN raw messages are being displayed in your Virtual Terminal Emulator.
 
-![image](https://user-images.githubusercontent.com/54443595/223522886-2e792b4f-0deb-41a3-b4d5-8f2d76c89e85.png)
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/5f8bffc3-58a4-4050-abf6-f22f4b93061d)
+
 >C-RUN raw messages should be seen from the Virtual Terminal Emulator.
 For C-RUN messages collected from the serial port during the field test, do as explained in the [Filtering C-RUN Raw Messages](##filtering-c-run-raw-messages) section: feed the raw messages so that the `--rtc_filter` option converts them to human-readable format.
 
