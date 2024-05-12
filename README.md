@@ -217,7 +217,7 @@ To run this example, do this:
 5. Examine the source code comments for each reported error.
 
 >[!NOTE]
->The function `HeapFunc3()` in `Heap.c` can be enabled by uncommenting the `CRUN_FULL_EDITION` macro definition. The function requires a full edition of C-RUN since its resource consumption will exceed the code size limitation in the time-limited trial version. [Contact us](https://www.iar.com/about/contact) for the full license or a demonstration.
+>The function `HeapFunc3()` in `Heap.c` can be enabled by uncommenting the `CRUN_FULL_EDITION` macro definition. The function requires a full edition of C-RUN since its resource consumption will exceed the code size limitation in the time-limited trial version. [Contact us](https://www.iar.com/about/contact) in case you need the full license or a demonstration.
 
 
 <!-- --------------------------------------------------------------------------------------------------- -->
