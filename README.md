@@ -75,9 +75,9 @@ To run this example, do this:
 
 8. The execution will _Stop_, with the following line of code highlighted:
 
-![image](https://user-images.githubusercontent.com/54443595/223120924-98fea4f5-ab7a-487e-8309-bf650db05ee8.png)
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/5737b5b0-2b25-4b67-9242-07a4e4bb0fa3)
 
->In the editor window, C-SPY highlights in green the statement in which the execution stopped when the runtime error checking was triggered. In addition, C-RUN narrows the problem down and highlights the root cause of the runtime error in purple.
+>In the editor window, C-SPY highlights in green the statement in which the execution stopped when the runtime error checking was triggered. In addition, C-RUN narrows the problem down and highlights the root cause of the runtime error.
 
 ![image](https://user-images.githubusercontent.com/54443595/223120962-c875ed49-8322-4a44-b296-5decd196b6df.png)
 
@@ -85,9 +85,11 @@ To run this example, do this:
 
 9. Examine the remaining detected errors by pressing <kbd>F5</kbd> to resume the program execution until the next error message, or until the execution ends.
 
-10. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/2604cd6e-9f49-4ac2-949e-a3379f4cfdb3)
 
-11. When you create applications, there are situations where relying on the wrap-around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can simply be deselected. In the project's __Runtime checking__ options, disable these:
+11. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
+
+12. When you create applications, there are situations where relying on the wrap-around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can simply be deselected. In the project's __Runtime checking__ options, disable these:
 
 ![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/3ec8fa7d-53e3-42ed-9df6-5e79406b5bc1)
 
@@ -120,10 +122,14 @@ To run this example, do this:
 
 6. Rebuild and run the project.
 
-![image](https://user-images.githubusercontent.com/54443595/223133775-e597ae6e-fe4f-4d17-9f82-c6023bcdb6d1.png)
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/bfd4cb27-f942-4cc4-a690-418ae14b8cf5)
+
 > Note that now C-RUN highlighted an out-of-bounds access for `*(ap+2)`. However, the execution stopped earlier, at the first `printf()` statement. The reason is that the compiler determines that pointer addresses used as parameters for those `printf()` calls are related and, with that, C-RUN efficiently can test them in one go.
 
-7. Press <kbd>F5</kbd> to resume the execution.
+7. Press <kbd>F5</kbd> to resume the execution and inspect the remaining C-RUN Message:
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/b50e1834-0da8-42b3-a0ba-f375dd21c50c)
+
 > [!TIP]
 > It will stop at the last statement of the application, indicating that the assignment is performed out of bounds. From a bounds-checking perspective, dynamically allocated memory is no different from local pointers, static buffers, or buffers on the stack.
 
@@ -148,16 +154,8 @@ In scenarios where the main project relies on pre-built (third-party) libraries,
 The project _Bounds-checking+libs_ is a modified version of the _Bounds-checking_ project. The functionality available from the `IntMax.c` file was moved to a _Library project_ that produced a static library named `MaxLib.a`, pre-built with no C-RUN bounds-checking instrumentation, typical for third-party libraries where the code cannot be changed. 
 
 When you use pointers and pointer arguments between the _instrumented application code_ and the _non-instrumented library code_, you must inform the compiler (and linker) that functions in the library code do not have bounds-checking information. The best way to do so is to use the `#pragma default_no_bounds` directive when including a library header, to inform the compiler that the library was not built with C-RUN Bounds-checking information:
-```c
-#ifdef __AS_BOUNDS__             // Module built with C-RUN Bounds checking?
-#define default_no_bounds=on     // Turn OFF bounds-checking information generation
-#include "library-header.h"
-#define default_no_bounds=off    // Turn ON  bounds-checking information generation
-#else
-#include "library-header.h"
-#endif
-/* Application code */
-```
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/788c9bba-3610-4197-a9c5-43b7beb01e0c)
 
 To run this example, do this:
 
@@ -215,6 +213,10 @@ To run this example, do this:
 4. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
 
 5. Examine the source code comments for each reported error.
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/36ccd11f-7037-4e81-b4e3-f6626ac60936)
+
+6. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
 
 >[!NOTE]
 >The function `HeapFunc3()` in `Heap.c` can be enabled by uncommenting the `CRUN_FULL_EDITION` macro definition. The function requires a full edition of C-RUN since its resource consumption will exceed the code size limitation in the time-limited trial version. [Contact us](https://www.iar.com/about/contact) in case you need the full license or a demonstration.
