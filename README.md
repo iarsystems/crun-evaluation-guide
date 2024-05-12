@@ -231,7 +231,10 @@ All you need to do is to redirect the built-in function `__iar_ReportCheckFailed
 
 1. Choose an application project built with C-RUN information.
 
-2. Choose __Project__ → __Options__ → __Linker__ → __Extra Options__ and specify this command line option:
+2. Choose __Project__ → __Options__ → __Linker__ → __Extra Options__ and use this command line option:
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/021c8c4f-61db-4e56-ba42-b59299f85a34)
+
 >```
 >--redirect __iar_ReportCheckFailed=__iar_ReportCheckFailedStdout
 >```
