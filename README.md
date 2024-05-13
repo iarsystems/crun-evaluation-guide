@@ -49,6 +49,9 @@ The workspace will launch with a pre-selected project. In the workspace __Overvi
 Below you will find specific instructions for running each of these projects.
 
 
+
+
+
 <!-- --------------------------------------------------------------------------------------------------- -->
 ### Arithmetic Checking
 The first example explores the most straightforward functionality in C-RUN: the _Arithmetic_ checks.
@@ -87,9 +90,9 @@ To run this example, do this:
 
 ![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/2604cd6e-9f49-4ac2-949e-a3379f4cfdb3)
 
-11. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
+10. Stop the debug session (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>).
 
-12. When you create applications, there are situations where relying on the wrap-around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can simply be deselected. In the project's __Runtime checking__ options, disable these:
+11. When you create applications, there are situations where relying on the wrap-around property of overflown unsigned integers is efficient. In such cases, specific C-RUN checks can simply be deselected. In the project's __Runtime checking__ options, disable these:
 
 ![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/3ec8fa7d-53e3-42ed-9df6-5e79406b5bc1)
 
@@ -100,6 +103,10 @@ To run this example, do this:
 
 > [!NOTE]
 > __C-RUN Messages__ can be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
+
+
+
+
 
 <!-- --------------------------------------------------------------------------------------------------- -->
 ### Bounds checking
@@ -147,6 +154,10 @@ Pointers that can be accessed through other pointers must have information in a 
 10. Rebuild, and __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
 > In this example, there is only one pointer that needs to be kept in the table, so a single entry is enough.
 
+
+
+
+
 <!-- --------------------------------------------------------------------------------------------------- -->
 ### Bounds checking and libraries
 In scenarios where the main project relies on pre-built (third-party) libraries, _bounds checking_ requires extra consideration for shared pointers.
@@ -188,6 +199,10 @@ To run this example, do this:
 9. Comment out one of the calls to the `CRUN_MAKE_BOUNDS()` macro, rebuild and run.
 >:grey_question: Did it change the output in the __C-RUN Messages__ window?
 
+
+
+
+
 <!-- --------------------------------------------------------------------------------------------------- -->
 ### Heap checking capabilities
 C-RUN can check for errors in how heap memory is being used. _Heap checking_ can catch when the application tries to use already freed memory, non-matching deallocation attempts, and leaked heap blocks.
@@ -222,128 +237,100 @@ To run this example, do this:
 >The function `HeapFunc3()` in `Heap.c` can be enabled by uncommenting the `CRUN_FULL_EDITION` macro definition. The function requires a full edition of C-RUN since its resource consumption will exceed the code size limitation in the time-limited trial version. [Contact us](https://www.iar.com/about/contact) in case you need the full license or a demonstration.
 
 
+
+
+
 <!-- --------------------------------------------------------------------------------------------------- -->
-## Using C-RUN in non-interactive mode
-There are scenarios where it might not be possible to debug an application built with C-RUN information directly in the IDE. Perhaps there is need for electrical insulation, or for running the device in its real operating environment where there is no access to debug ports, etc.
-
-By default, C-RUN messages are displayed in the __C-RUN Messages__ window in the IDE. The messages can alternatively be redirected to the the standard output stream (__`stdout`__). This means that capturing the C-RUN messages during field testing for post-mortem analysis might be attractive.
-
-### Redirecting C-RUN messages to the standard output stream
-All you need to do is to redirect the built-in function `__iar_ReportCheckFailed()` to `__iar_Report_Check_FailedStdOut()`.
-
-1. Choose an application project built with C-RUN information.
-
-2. Choose __Project__ → __Options__ → __Linker__ → __Extra Options__ and use this command line option:
-
-![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/021c8c4f-61db-4e56-ba42-b59299f85a34)
-
->```
->--redirect __iar_ReportCheckFailed=__iar_ReportCheckFailedStdout
->```
-
-> [!NOTE]
-> For your convenience, the source file `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdOut.c`, which implements the `__iar_Report_Check_FailedStdOut()` function, was added to every application project in this guide's workspace. The source file comes bundled with your product's installation. It is only there for reference as it was __excluded from build__, and it can be used as starting point for any customizations (for example, serial port output).
-
-3. Choose __Project__ → __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) to start executing the application.
-
-4. Choose __View__ → __C-RUN__ → __Messages__ to open the __C-RUN Messages__ window.
-5. Choose __View__ → __C-RUN__ → __Terminal I/O__ to open the __Terminal I/O__ window.
-6. Choose __Debug__ → __Logging__ → __Set Terminal I/O Log File__ and select the __Enable Terminal I/O log file__ option.
-
-![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/399ef849-3e02-4bb4-9592-e17c73824477)
-
->[!NOTE]
->We will use the `TermIO.log` file later.
-
-7. Press <kbd>F5</kbd> to resume the application execution.
->Note that the __C-RUN Messages__ window is empty now. Any messages are redirected to `stdout`, and each message is printed in raw format in the C-SPY __Terminal I/O__ window:
-
-![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/58a8030f-84a8-4d1b-ba0f-60d10ee89634)
-
->[!NOTE]
->C-RUN for Arm depends on the _semihosting_ interface used by the C-RUN library function `__iar_ReportCheckFailed()`. Semihosting enables code that executes on the target system to interface with a debugger running on the host computer, while taking advantage of its low-level I/O facilities.
+# Using C-RUN in non-interactive mode
+There are scenarios in which might not be possible to debug an application built with C-RUN information directly from the IDE. Below you will find some examples on how to use C-RUN in non-interactive mode.
 
 
-### Running the application from the command line
-IAR Embedded Workbench includes the IAR C-SPY Command Line Utility (`cspybat.exe`). Using this utility, C-SPY can run applications from the command line. When an application for Arm is built using the runtime library semihosting option, this utility can take advantage of the host's standard output stream (__stdout__) to print the application's messages (for example, via `printf()`, etc.).
+## C-RUN Runtime Analysis from the command line
+The IAR C-SPY Command Line Utility (`cspybat`) can run applications directly from the command line. This utility is suitable for non-interactive debugging and can be used in conjunction with IAR C-RUN where runtime analysis is desired. One typical scenario for considering `cspybat` is within automated tests from a continuous integration environment. In this example, we will use the `Heap` project.
 
-1. Launch a __Command Prompt__ shell and change to the __settings__ folder.
-
-2. Execute `<project-name>.Debug.cspy.bat`, replacing `<project-name>` with your actual project's name.
->For every build configuration you create, IAR Embedded Workbench will create an automatic batch file (`<project-name>.<build-configuration>.cspy.bat`) for you. Inspect the script and its accompanying files and you will see all project parameters that are needed to execute the application from the command line.
-
-
-### Filtering C-RUN raw messages
-The C-RUN messages are encoded to be used in the IDE. In the console they are shown in raw text format. The `cspybat` utility provides the `--rtc_filter` option for converting the raw messages to human-readable text.
-
-1. Edit `settings\<project-name>.Debug.general.xcl`, to add this line after `--rtc_enable`, and save:
+1. Close the IDE, launch a __Command Prompt__ shell and change to the `Heap` project's folder.
 ```
---rtc_filter
+cd \path\to\crun-evaluation-guide\arm
 ```
 
-2. Execute the project's `.cspy.bat` file.
-> Notice that now, in filtering mode, `cspybat` waits for input. You could paste C-SPY raw messages in the terminal that executes C-SPY and they would be automatically converted to human-readable text.
+>[!TIP]
+> You will notice that, in this project's `settings/` folder, the IDE automatically generated four files for each project(/build configuration):
+>
+> | File                          | Description                                                     | Example
+> | -                             | -                                                               | -
+> | `<project>.<cfg>.cspy.bat`    | Batch script for executing the application using `cspybat`      | `Heap.Debug.cspy.bat`
+> | `<project>.<cfg>.cspy.ps1`    | PowerShell script for executing the application using `cspybat` | `Heap.Debug.cspy.ps1`
+> | `<project>.<cfg>.general.xcl` | Extended command line (`*.xcl`) containing general options      | `Heap.Debug.general.xcl`
+> | `<project>.<cfg>.driver.xcl`  | Extended command line (`*.xcl`) containing backend/driver options       | `Heap.Debug.driver.xcl`
+> 
+>Inspect the scripts and its accompanying files and you will see all project parameters that are needed to execute the application using `cspybat`.
 
-3. Take advantage of previously generated messages you got in [Redirecting C-RUN messages to the standard output stream](#redirecting-c-run-messages-to-the-standard-output-stream) and redirect them as input for running C-SPY with the C-RUN filtering capabilities:
+2. Use the option `--rtc_enable` to enable C-RUN in `cspybat`.
 ```
-...\settings><project-name>.Debug.cspy.bat < ..\TermIO.log
+echo --rtc_enable >> settings\Heap.Debug.general.xcl
+```
+
+3. Execute the batch script.
+```
+settings\Heap.Debug.cspy.bat
 ```
 
 <details><summary><b>Expected output example</b> (click to expand)</summary>
-
+ 
 >```
->...\crun-evaluation-guide\arm\settings>"C:\IAR\EW\ARM\8.11.1\common\bin\cspybat" 
-> -f "...\crun-evaluation-guide\arm\settings\Arithmetic.Debug.general.xcl" 
-> --backend 
-> -f "...\crun-evaluation-guide\arm\settings\Arithmetic.Debug.driver.xcl"
-> 
->     IAR C-SPY Command Line Utility V8.0.6.4851
->     Copyright 2000-2017 IAR Systems AB.
+>C:\crun-evaluation-guide\arm>settings\Heap.Debug.cspy.bat
 >
->crun_fail Integer conversion failure
->-- Conversion changes the value from         500 (0x000001f4)
->-- to                                        -12 (0xf4).
->-- Arithmetic.c\41:8-14
->crun_fail Integer conversion failure
->-- Conversion changes the value from         500 (0x000001f4)
->-- to                                        244 (0xf4).
->-- Arithmetic.c\50:8-22
->crun_fail Integer conversion failure
->-- Conversion changes the value from  244 (0xf4)
->-- to                                 -12 (0xf4).
->-- Arithmetic.c\50:8-22
->crun_fail Signed integer overflow
->-- Result is greater than the largest representable number:
->--   2147483647 (0x7fffffff) + 2 (0x2).
->-- Arithmetic.c\23:10-14
->crun_fail Unsigned integer overflow
->-- Result is greater than the largest representable number:
->--   4294967295 (0xffffffff) + 2 (0x2).
->-- Arithmetic.c\32:10-15
->crun_fail Shift overflow
->-- Left shift of negative value:
->--   -2147483647 (0x80000001) << 1.
->-- Arithmetic.c\59:10-15
->crun_fail Division by zero
->-- Division by zero.
->-- Arithmetic.c\76:7-11
->crun_fail Unhandled case in switch
->-- Switch to undefined case label.
->-- Arithmetic.c\84:3-12
+>C:\crun-evaluation-guide\arm\settings>"C:\IAR\EW\ARM\9.50.2\common\bin\cspybat"
+>-f "C:\crun-evaluation-guide\arm\settings\Heap.Debug.general.xcl"
+>--backend -f "C:\crun-evaluation-guide\arm\settings\Heap.Debug.driver.xcl"
+>
+>     IAR C-SPY Command Line Utility V9.3.2.12345
+>     Copyright 2000-2024 IAR Systems AB.
+>
+>Heap usage error @ 0x227a Core: 0
+>The address 0x20001249 does not appear to be the start of a heap block.
+>Call Stack:
+>    HeapFunc1 in "C:\crun-evaluation-guide\common\Heap.c", 32:3 - 32:10
+>    main in "C:\crun-evaluation-guide\common\Heap.c", 101:3 - 101:13
+>    [_call_main + 0xd]
+>Heap usage error @ 0x2280 Core: 0
+>The address 0x20001208 does not appear to be the start of a heap block.
+>Call Stack:
+>    HeapFunc1 in "C:\crun-evaluation-guide\common\Heap.c", 34:3 - 34:10
+>    main in "C:\crun-evaluation-guide\common\Heap.c", 101:3 - 101:13
+>    [_call_main + 0xd]
+>Heap usage error @ 0x2286 Core: 0
+>The address 0x20001249 does not appear to be the start of a heap block.
+>Call Stack:
+>    HeapFunc1 in "C:\crun-evaluation-guide\common\Heap.c", 35:1 - 35:1
+>    main in "C:\crun-evaluation-guide\common\Heap.c", 101:3 - 101:13
+>    [_call_main + 0xd]
+>Out of heap space @ 0x2292 Core: 0
+>There is no more heap space to allocate.
+>A request for 4120 bytes could not be satisfied.
+>A total of 36 bytes have been allocated in 1 heap blocks.
+>Call Stack:
+>    HeapFunc2 in "C:\crun-evaluation-guide\common\Heap.c", 44:3 - 44:9
+>    main in "C:\crun-evaluation-guide\common\Heap.c", 102:3 - 102:13
+>    [_call_main + 0xd]
+>
+>     CSpyBat terminating.
 >```
-> __Note__ In contrast to using C-RUN from the IDE, C-RUN raw messages do __not__ contain call stack information.
 
 </details>
 
-## Redirecting C-RUN raw messages to a serial port
-Use the information in this section to customize how C-RUN raw messages are routed in your applications.
-We will not offer any source code that relies on hardware-specific communication peripherals.
-Instead, we will abstract from hardware implementation details and refer to a generic `serial_send(channel, unsigned char)` function.
+>[!NOTE]
+>- All `cspybat` options for C-RUN begin with `--rtc_*`. For more information about these options, see _cspybat options for C-RUN_ in the _C-SPY Debugging Guide_.
+>- The IDE might regenerate the project's `*.xcl` files, overwriting your changes. Use `attrib +r settings/*.xcl` if you wish to pin it and avoid further automatic changes performed by the IDE. Use `attrib -r settings/*.xcl` to remove the read-only attribute.
 
-We assume that the hardware peripheral has been correctly initialized for operation, and that a similar function has been implemented somewhere else in your application's drivers.
 
-Now that you know how to redirect C-RUN raw messages to `stdout`, you can customize the `__iar_ReportCheckFailedStdout()` function to print to a serial port, starting from the provided `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdout.c` source file.
+## Redirecting C-RUN messages to a serial port
+Now consider scenarios where there is a need for electrical insulation, or for running the device in its real operating environment where there should be no access to debug ports, etc. In this section you will find information on how to customize your applications to reroute C-RUN raw messages to the desired communications channel so that they can be captured during the field testing for post-mortem analysis.
 
+>[!NOTE]
+>In this guide, we will not offer any source code that relies on hardware-specific communication peripherals. It is assumed that the Hardware Abstraction Layer (HAL) in the application has been correctly initialized and it is ready for operation, providing serial transmission support through a function such as `serial_send(channel, unsigned char)`. Ultimately `serial_send()` can be replaced by an equivalent function for writing C-RUN raw messages to any suitable media (e.g., SPI, I2C, RAM, Flash, etc.).
+
+### Procedure
 1. Add the `$EW_DIR$/<target>/src/lib/crun/ReportCheckFailedStdout.c` source file to your project.
 
 2. Open `ReportCheckFailedStdout.c`.
@@ -359,28 +346,65 @@ Now that you know how to redirect C-RUN raw messages to `stdout`, you can custom
   //__write(_LLIO_STDOUT, (unsigned char const *)buf, (size_t)(b - buf));
   for (size_t i = 0; i < (size_t)(b - buf); i++)
   {
-    serial_send(USART6, (unsigned char)buf[i]);
+    serial_send(USART7, (unsigned char)buf[i]);
   }
 ```
 
+6. Choose __Project__ → __Options__ → __Linker__ → __Extra Options__ and use this command line option:
+
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/021c8c4f-61db-4e56-ba42-b59299f85a34)
+
+>```
+>--redirect __iar_ReportCheckFailed=__iar_ReportCheckFailedStdout
+>```
+
 > [!NOTE]
-> - `serial_send()` could be replaced by another function that sends the characters from the C-RUN messages strings to other media such as SPI, I2C, RAM, Flash, etc.
 > - Alternatively, the low-level I/O `__write()` function can be overridden, provided that it does not affect other parts of your application. For more information, refer to the article [Overriding and redirecting library modules without rebuilding the entire library](https://www.iar.com/knowledge/learn/programming/overriding-and-redirecting-library-modules-without-rebuilding-the-entire-library/).
 
 
 ### Run the board in stand-alone mode
-1. Launch a Virtual Terminal Emulator (such as Tera Term VT) and connect it to the serial port.
-2. Choose __Project__ → __Download and Debug__ to start executing the application.
+1. Connect the Debug probe to the target.
+2. In the IDE, choose __Project__ → __Download__ → __Download Active Application__ to flash the device with the the application.
 3. Power off and disconnect the debug probe from the board.
-4. Power up the board and verify that the C-RUN raw messages are being displayed in your Virtual Terminal Emulator.
+4. Launch a Virtual Terminal Emulator (such as [Tera Term VT](https://teratermproject.github.io/index-en.html)) and connect it to the target board's serial port.
+5. Power up the board and verify that the C-RUN raw messages are being displayed in your Virtual Terminal Emulator.
 
 ![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/5f8bffc3-58a4-4050-abf6-f22f4b93061d)
 
->C-RUN raw messages should be seen from the Virtual Terminal Emulator.
-For C-RUN messages collected from the serial port during the field test, do as explained in the [Filtering C-RUN Raw Messages](##filtering-c-run-raw-messages) section: feed the raw messages so that the `--rtc_filter` option converts them to human-readable format.
+6. Save the collected `CRUN_ERROR` messages to a text file (e.g., `field-tests-with-crun.txt`).
 
->[!TIP]
-> To prevent `cspybat` from re-flashing a target when filtering C-RUN raw data this way, choose __Project__ → __Options__ → __Debugger__ → __Download__ and deselect the option __Use flash loader(s)__. The corresponding `.cspy.bat` script in the settings folder will be updated accordingly when you close the workspace. 
+### Filtering the collected messages
+In possession of the C-RUN raw messages collected from the field, feed it back to C-RUN itself using `cspybat`. The `cspybat` utility provides the `--rtc_raw_to_txt` option for converting the raw messages to human-readable text.
+
+1. Append the `--rtc_raw_to_txt="/path/to/field-tests-with-crun.txt"` to the project's `settings/<project>.<cfg>.general.xcl`.
+
+2. Run `cspybat`:
+```
+settings/<project>.<cfg>.cspy.bat
+```
+
+<details><summary><b>Output example</b> (click to expand)</summary>
+ 
+>```
+>C:\project\settings>"C:\IAR\EW\ARM\9.50.2\common\bin\cspybat"
+>-f "C:\project\settings\project.Debug.general.xcl"
+>--backend -f "C:\project\settings\project.Debug.driver.xcl"
+>
+>     IAR C-SPY Command Line Utility V9.3.2.391
+>     Copyright 2000-2023 IAR Systems AB.
+>
+>crun_fail Signed integer overflow
+>-- Result is greater than the largest representable number:
+>--   1 (0x1) + 2147483647 (0x7fffffff).
+>crun_fail Integer conversion failure
+>-- Conversion changes the value from -2147483648 (0x80000000)
+>-- to                                 2147483648 (0x80000000).
+>```
+
+</details>
+
+>[!NOTE]
+>Call Stack Information is not provided in this mode.
 
 
 ## Summary
@@ -390,16 +414,14 @@ For in-depth C-RUN information, refer to _C-RUN runtime error checking_ in the _
 
 
 ## Issues
-
-### Disclaimer
-The information in this repository is subject to change without notice and does not represent a commitment on any part of IAR. While the information contained 
-herein is assumed to be accurate, IAR assumes no responsibility for any errors or omissions.
-
 Have you found an issue or do you have a suggestion related to [this guide][url-repo]? Please use the public issue tracker.
 - Do not forget to take a look at [earlier issues][url-repo-issue-old].
 - If you create a [new][url-repo-issue-new] issue, please describe it in detail.
 
+Do not use the public issue tracker if you need technical support. The issue tracker is not a support forum. For support options refer to [IAR Support](https://iar.com/support).
+
 >:envelope: You can also privately reach out to us via <a href="mailto:fae.emea@iar.com?subject=[GitHub] C-RUN Evaluation Guide -- Contacting via email">email</a>.
+
 <!-- Links -->
 [url-repo]:                https://github.com/iarsystems/crun-evaluation-guide
 [url-repo-wiki]:           https://github.com/iarsystems/crun-evaluation-guide/wiki
