@@ -41,7 +41,7 @@ To run the examples:
 
 The workspace will launch with a pre-selected project. In the workspace __Overview__ there are tabs for switching from one project to another:
 
-![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/0e045f44-bb50-4de8-aa00-c55706d59671)
+![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/76e7faeb-7e6e-45e7-bf0f-411b5ffd5698)
 
 > [!TIP]
 > The arrow buttons scroll to tabs that did not fit into the window width. The window can be resized. Alternatively, right-click a project in the __Overview__ and choose __Set as active__ from the context menu.
