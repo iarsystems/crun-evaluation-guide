@@ -96,15 +96,12 @@ To run this example, do this:
 
 ![image](https://github.com/IARSystems/crun-evaluation-guide/assets/54443595/3ec8fa7d-53e3-42ed-9df6-5e79406b5bc1)
 
-12. Rebuild, then __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application.
-> Disabling the checks you do not need will generally make execution faster and decrease the code size. 
+12. Rebuild, __Download and Debug__ (<kbd>Ctrl</kbd>+<kbd>D</kbd>) the application, and examine the changes in the error detection capabilities.
 
-13. By default, C-RUN will __Stop__ at each detected error. In the __C-RUN Messages__ window, the _Default action_ can be changed to __Log__ or __Ignore__.
-
-> [!NOTE]
-> __C-RUN Messages__ can be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
-
-
+>[!NOTE]
+>- Disabling the checks you do not need will generally make execution faster while decreasing the code size. 
+>- The _Default Action_ for C-RUN is to __Stop__ at each detected error. In the __C-RUN Messages__ window, the _Default action_ can be switched to __Log__ or to __Ignore__.
+>- __C-RUN Messages__ can also be filtered by rules. For details, refer to the _Creating rules for messages_ section in the _C-SPY Debugging Guide_.
 
 
 
