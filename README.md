@@ -405,21 +405,22 @@ settings/<project>.<cfg>.cspy.bat
 
 
 ## Summary
-C-RUN is a powerful runtime analysis add-on for IAR Embedded Workbench that can make a difference when you run field tests. Are you interested in using C-RUN for your projects? [__Request a quote__](https://iar.com/buy) for the licensing option that suits your needs.
+C-RUN is a robust runtime analysis add-on for IAR Embedded Workbench, designed to significantly improve your field testing. Interested in integrating C-RUN into your projects? [__Request a quote__](https://www.iar.com/products/c-run/#product-block-get-quote) to find the licensing option that best fits your needs.
 
-For in-depth C-RUN information, refer to _C-RUN runtime error checking_ in the _C-SPY Debugging Guide_ bundled with the IAR product you use.
+For comprehensive details on C-RUN, please refer to the _C-RUN runtime error checking_ section in the _C-SPY Debugging Guide_ included with your IAR product.
+
+[__` Follow us `__](https://github.com/iarsystems) on GitHub to get updates about tutorials like this and more.
 
 
 ## Issues
-Have you found an issue or do you have a suggestion related to [this guide][url-repo]? Please use the public issue tracker.
-- Do not forget to take a look at [earlier issues][url-repo-issue-old].
-- If you create a [new][url-repo-issue-new] issue, please describe it in detail.
+For technical support contact [IAR Customer Support][url-iar-customer-support].
 
-Do not use the public issue tracker if you need technical support. The issue tracker is not a support forum. For support options refer to [IAR Support](https://iar.com/support).
+For questions or suggestions related to this tutorial: try the [wiki][url-repo-wiki] or check [earlier issues][url-repo-issue-old]. If those don't help, create a [new issue][url-repo-issue-new] with detailed information.
 
->:envelope: You can also privately reach out to us via <a href="mailto:fae.emea@iar.com?subject=[GitHub] C-RUN Evaluation Guide -- Contacting via email">email</a>.
 
 <!-- Links -->
+[url-iar-customer-support]: https://iar.my.site.com/mypages/s/contactsupport
+
 [url-repo]:                https://github.com/iarsystems/crun-evaluation-guide
 [url-repo-wiki]:           https://github.com/iarsystems/crun-evaluation-guide/wiki
 [url-repo-issue-new]:      https://github.com/iarsystems/crun-evaluation-guide/issues/new
